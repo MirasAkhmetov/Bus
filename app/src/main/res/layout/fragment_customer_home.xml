@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="58dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/viewBg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/skin_gradient"
+                app:layout_constraintBottom_toTopOf="@id/divider"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/img_3"
+                app:layout_constraintBottom_toBottomOf="@id/txtFromCustomerHome"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/include_toolbar"
+                app:layout_constraintTop_toBottomOf="parent"
+                tools:layout_editor_absoluteX="20dp" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/order_set_city"
+                android:textColor="@color/colorWhite"
+                app:drawableStartCompat="@drawable/ic_14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+            <TextView
+                android:id="@+id/txtFromCustomerHome"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/skin_blue_corner"
+                android:hint="@string/order_from"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:drawableStartCompat="@drawable/ic_12"
+                app:layout_constraintEnd_toEndOf="@id/text"
+                app:layout_constraintStart_toStartOf="@id/text"
+                app:layout_constraintTop_toBottomOf="@id/text" />
+
+            <TextView
+                android:id="@+id/txtToCustomerHome"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/skin_blue_corner"
+                android:hint="@string/order_to"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                app:drawableStartCompat="@drawable/ic_13"
+                app:layout_constraintEnd_toEndOf="@id/text"
+                app:layout_constraintStart_toStartOf="@id/text"
+                app:layout_constraintTop_toBottomOf="@id/txtFromCustomerHome" />
+
+            <ImageView
+                android:id="@+id/imgChangeFromTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/ic_11"
+                android:translationZ="15dp"
+                app:layout_constraintBottom_toTopOf="@id/txtToCustomerHome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtFromCustomerHome" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/txtToCustomerHome" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtDateCustomerHome"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:background="@drawable/skin_white_corner"
+                android:elevation="2dp"
+                android:hint="@string/order_choose_date"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText"
+                app:drawableStartCompat="@drawable/ic_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnToday"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="40dp"
+                android:paddingHorizontal="10dp"
+                android:text="@string/today"
+                android:textColor="@color/colorGreyDark"
+                android:background="@drawable/background_blue_rounded"
+                app:layout_constraintTop_toBottomOf="@id/txtDateCustomerHome"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <Button
+                android:id="@+id/btnTomorrow"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:paddingHorizontal="10dp"
+                android:text="@string/tomorrow"
+                android:textColor="@color/colorGreyDark"
+                android:background="@drawable/background_blue_rounded"
+                app:layout_constraintTop_toBottomOf="@id/txtDateCustomerHome"
+                app:layout_constraintStart_toEndOf="@id/btnToday"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+<!--            <TextView-->
+<!--                android:id="@+id/txtBaggageCustomerHome"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="@dimen/edt_height"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:background="@drawable/skin_white_corner"-->
+<!--                android:elevation="10dp"-->
+<!--                android:hint="@string/auth_comfort"-->
+<!--                android:paddingStart="15dp"-->
+<!--                android:paddingEnd="15dp"-->
+<!--                android:textColor="@color/colorText"-->
+<!--                android:textColorHint="@color/colorText"-->
+<!--                app:drawableStartCompat="@drawable/ic_16"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/text"-->
+<!--                app:layout_constraintStart_toStartOf="@id/text"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/txtDateCustomerHome" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgPlusCustomerHome"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:src="@drawable/ic_19"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/text"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/txtBaggageCustomerHome" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgMinusCustomerHome"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_marginEnd="40dp"-->
+<!--                android:src="@drawable/ic_18"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/imgPlusCustomerHome"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/txtBaggageCustomerHome" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/txtPlaceCountCustomerHome"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="1"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/imgPlusCustomerHome"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/imgPlusCustomerHome"-->
+<!--                app:layout_constraintStart_toEndOf="@id/imgMinusCustomerHome"-->
+<!--                app:layout_constraintTop_toTopOf="@id/imgPlusCustomerHome" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:text="@string/order_place_number"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/imgMinusCustomerHome"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/imgMinusCustomerHome"-->
+<!--                app:layout_constraintStart_toStartOf="@id/text"-->
+<!--                app:layout_constraintTop_toTopOf="@id/imgMinusCustomerHome" />-->
+
+            <Button
+                android:id="@+id/btnFindTicketCustomerHome"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:text="@string/order_find_ticket"
+                app:layout_constraintTop_toBottomOf="@id/cardSearch"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

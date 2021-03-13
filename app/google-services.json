@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "12620538604",
+    "firebase_url": "https://bustime-5f23d.firebaseio.com",
+    "project_id": "bustime-5f23d",
+    "storage_bucket": "bustime-5f23d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12620538604:android:1d1a3e2944c56bd8c8fbc9",
+        "android_client_info": {
+          "package_name": "com.thousand.bus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12620538604-thniqiiakasvkgnk20m72ausqpv8jrcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYSvYSXjWEJfagD5IlXntRvybk24TfUTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12620538604-thniqiiakasvkgnk20m72ausqpv8jrcp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "12620538604-k6kephv9sfmbim74k15h7fmpl3ktg8v9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "thousand.com.BusTime"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

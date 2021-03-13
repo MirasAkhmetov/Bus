@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/divider"
+        android:background="@drawable/skin_gradient"
+        android:src="@drawable/img_3"/>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/include_toolbar"/>
+
+    <TextView
+        android:id="@+id/txtPeopleCountCSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="15dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:textSize="12sp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/skin_blue_corner"/>
+
+    <TextView
+        android:id="@+id/txtDateCountCSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toEndOf="@id/txtPeopleCountCSR"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="15dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:textSize="12sp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/skin_blue_corner"/>
+
+    <TextView
+        android:id="@+id/txtFromCSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtPeopleCountCSR"
+        app:layout_constraintStart_toStartOf="@id/txtPeopleCountCSR"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/txtFromStationCSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtFromCSR"
+        app:layout_constraintStart_toStartOf="@id/txtPeopleCountCSR"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorWhite"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf ="@id/txtPeopleCountCSR"
+        app:layout_constraintBottom_toBottomOf="@id/txtFromStationCSR"
+        app:layout_constraintStart_toEndOf="@id/txtFromCSR"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_23"/>
+
+    <TextView
+        android:id="@+id/txtToCSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtPeopleCountCSR"
+        app:layout_constraintStart_toEndOf="@id/image"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/txtToStationCSR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtFromCSR"
+        app:layout_constraintStart_toStartOf="@id/txtToCSR"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorWhite"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/txtFromStationCSR"/>
+
+
+ <com.google.android.material.tabs.TabLayout
+     android:id="@+id/tabLayout"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     app:layout_constraintTop_toBottomOf="@id/divider"
+     app:tabTextAppearance="@style/CustomerTabStyle"
+     app:tabGravity="fill"
+     app:tabInlineLabel="true"
+     app:tabMode="fixed"
+     app:tabTextColor="@color/colorText"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCSR"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="15dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_travel"/>
+
+    <TextView
+        android:id="@+id/txtEmptyCSR"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/empty_travel"
+        android:textColor="@color/colorGreyDark"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnSort"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:drawableStart="@drawable/ic_group__4_"
+        android:text="@string/sort"
+        android:drawablePadding="5dp"
+        android:background="@drawable/background_blue_painted"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

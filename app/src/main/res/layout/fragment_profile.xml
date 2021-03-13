@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootProfile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/toolbar"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar"
+            android:background="@drawable/skin_gradient"/>
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/include_toolbar"/>
+
+        <ImageView
+            android:id="@+id/imgAvatarProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_10"/>
+        
+        <TextView
+            android:id="@+id/txtNameProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/imgAvatarProfile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/txtTypeProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtNameProfile"
+            app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtEditProfile"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtTypeProfile"
+            app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/skin_white_corner"
+            android:elevation="10dp"
+            app:drawableStartCompat="@drawable/ic_46"
+            app:drawableEndCompat="@drawable/ic_7"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/profile_edit"
+            android:drawablePadding="10dp"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchNotificationProfile"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtEditProfile"
+            app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/skin_white_corner"
+            android:elevation="10dp"
+            app:drawableStartCompat="@drawable/ic_47"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/profile_notification"
+            android:drawablePadding="10dp"
+            android:textColor="@color/colorText"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchSoundProfile"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/switchNotificationProfile"
+            app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/skin_white_corner"
+            android:elevation="10dp"
+            app:drawableStartCompat="@drawable/ic_48"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/profile_sound"
+            android:drawablePadding="10dp"
+            android:textColor="@color/colorText"/>
+
+        <TextView
+            android:id="@+id/txtLanguageProfile"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/switchSoundProfile"
+            app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/skin_white_corner"
+            android:elevation="10dp"
+            app:drawableStartCompat="@drawable/ic_49"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/profile_language"
+            android:drawablePadding="10dp"/>
+
+        <TextView
+            android:id="@+id/txtLanguageValueProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtLanguageProfile"
+            app:layout_constraintBottom_toBottomOf="@id/txtLanguageProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtLanguageProfile"
+            android:layout_marginEnd="15dp"
+            android:textColor="@color/colorGreyDark"
+            android:text="@string/profile_ru"
+            android:translationZ="15dp"/>
+
+        <TextView
+            android:id="@+id/txtShareApp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtLanguageProfile"
+            app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/skin_white_corner"
+            android:elevation="10dp"
+            app:drawableStartCompat="@drawable/ic_share"
+            app:drawableEndCompat="@drawable/ic_7"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/profile_share_app"
+            android:drawablePadding="10dp"/>
+
+        <TextView
+            android:id="@+id/txtAboutProfile"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtShareApp"
+            app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/skin_white_corner"
+            android:elevation="10dp"
+            app:drawableStartCompat="@drawable/ic_50"
+            app:drawableEndCompat="@drawable/ic_7"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/profile_about"
+            android:drawablePadding="10dp"/>
+
+        <TextView
+            android:id="@+id/txtSignOutProfile"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/txtAboutProfile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtNameProfile"
+            app:layout_constraintEnd_toEndOf="@id/txtNameProfile"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/skin_white_corner"
+            android:elevation="10dp"
+            app:drawableStartCompat="@drawable/ic_51"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/profile_sign_out"
+            android:gravity="center"
+            android:drawablePadding="10dp"
+            android:textColor="@color/colorRed"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

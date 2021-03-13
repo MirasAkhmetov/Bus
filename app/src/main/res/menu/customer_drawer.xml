@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/drawerCustomerHome"
+        android:title="@string/menu_home"
+        android:icon="@drawable/ic_38"/>
+
+    <item
+        android:id="@+id/drawerCustomerTravelList"
+        android:title="@string/menu_list_travels"
+        android:icon="@drawable/ic_39"/>
+
+    <item
+        android:id="@+id/drawerCustomerTicket"
+        android:title="@string/menu_tickets"
+        android:icon="@drawable/ic_45"/>
+
+    <item
+        android:id="@+id/drawerCustomerContact"
+        android:title="@string/contact"
+        android:icon="@drawable/ic_53"/>
+
+</menu>

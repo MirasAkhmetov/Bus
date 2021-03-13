@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/imgMainMyTicket"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/img_17"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/txtTimeFromMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="45dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtTimeToMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="45dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/txtTimeFromMyTicket"
+        app:layout_constraintStart_toStartOf="@id/txtTimeFromMyTicket"
+        app:layout_constraintEnd_toEndOf="@id/txtTimeToMyTicket"
+        android:src="@drawable/ic_31"/>
+
+    <TextView
+        android:id="@+id/txtRouteDurationMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintEnd_toEndOf="@id/image"
+        android:textColor="@color/colorGrey"/>
+
+    <TextView
+        android:id="@+id/txtDateFromMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtTimeFromMyTicket"
+        app:layout_constraintStart_toStartOf="@id/txtTimeFromMyTicket"
+        android:textColor="@color/colorGrey" />
+
+    <TextView
+        android:id="@+id/txtDateToMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtTimeFromMyTicket"
+        app:layout_constraintEnd_toEndOf="@id/txtTimeToMyTicket"
+        android:textColor="@color/colorGrey" />
+
+    <TextView
+        android:id="@+id/txtCityFromMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtDateFromMyTicket"
+        app:layout_constraintStart_toStartOf="@id/txtTimeFromMyTicket"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtInProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlueDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCityToMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtDateFromMyTicket"
+        app:layout_constraintEnd_toEndOf="@id/txtTimeToMyTicket"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtStationFromMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtCityFromMyTicket"
+        app:layout_constraintStart_toStartOf="@id/txtTimeFromMyTicket"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorGrey"/>
+
+    <TextView
+        android:id="@+id/txtStationToMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtCityFromMyTicket"
+        app:layout_constraintEnd_toEndOf="@id/txtTimeToMyTicket"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorGrey"/>
+
+    <TextView
+        android:id="@+id/txtCarNumberMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtStationToMyTicket"
+        app:layout_constraintEnd_toEndOf="@id/txtTimeToMyTicket"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/txtCarNumberMyTicket"
+        app:layout_constraintBottom_toBottomOf="@id/txtCarNumberMyTicket"
+        app:layout_constraintStart_toStartOf="@id/txtTimeFromMyTicket"
+        android:text="@string/order_car_number_"/>
+
+    <TextView
+        android:id="@+id/txtPlaceNumberMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtCarNumberMyTicket"
+        app:layout_constraintEnd_toEndOf="@id/txtTimeToMyTicket"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/txtPlaceNumberMyTicket"
+        app:layout_constraintBottom_toBottomOf="@id/txtPlaceNumberMyTicket"
+        app:layout_constraintStart_toStartOf="@id/txtTimeFromMyTicket"
+        android:text="@string/order_place_number_"/>
+
+
+    <Button
+        android:id="@+id/btnCancelMyTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        app:layout_constraintTop_toBottomOf="@id/txtPlaceNumberMyTicket"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/take_back_ticket"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textSize="12sp"
+        android:visibility="visible"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

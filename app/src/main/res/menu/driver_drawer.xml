@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/drawerDriverHome"
+        android:title="@string/menu_home"
+        android:icon="@drawable/ic_38"/>
+
+    <item
+        android:id="@+id/drawerDriverUpcomingTravels"
+        android:title="@string/menu_upcoming_travels"
+        android:icon="@drawable/ic_42"/>
+
+    <item
+        android:id="@+id/drawerDriverAddBus"
+        android:title="@string/menu_add_bus"
+        android:icon="@drawable/ic_add_bus" />
+
+    <item
+        android:id="@+id/drawerDriverMyPassengers"
+        android:title="@string/menu_my_passengers"
+        android:icon="@drawable/ic_41"/>
+
+    <item
+        android:id="@+id/drawerDriverListTravel"
+        android:title="@string/menu_list_travels"
+        android:icon="@drawable/ic_39"/>
+
+    <item
+        android:id="@+id/drawerDriverContact"
+        android:title="@string/contact"
+        android:icon="@drawable/ic_53"/>
+
+</menu>

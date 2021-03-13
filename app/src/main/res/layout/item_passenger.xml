@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardElevation="5dp"
+    app:cardBackgroundColor="@color/colorWhite">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/txtNamePassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtCityFromPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtNamePassenger"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="90dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtStationFromPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtCityFromPassenger"
+            app:layout_constraintStart_toStartOf="@id/txtCityFromPassenger"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtTimeFromPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtCityFromPassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtCityFromPassenger"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtCityFromPassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtCityFromPassenger"
+            app:layout_constraintStart_toEndOf="@id/txtCityFromPassenger"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_33"/>
+
+        <TextView
+            android:id="@+id/txtDateFromPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtCityFromPassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtCityFromPassenger"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtCityToPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtStationFromPassenger"
+            app:layout_constraintStart_toStartOf="@id/txtCityFromPassenger"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtStationToPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtCityToPassenger"
+            app:layout_constraintStart_toStartOf="@id/txtCityToPassenger"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtTimeToPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtCityToPassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtCityToPassenger"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/txtDateToPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtCityToPassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtCityToPassenger"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtBookingDatePassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtStationToPassenger"
+            app:layout_constraintEnd_toEndOf="@id/txtDateFromPassenger"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtBookingDatePassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtBookingDatePassenger"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/order_booking_date"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtNumberPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtBookingDatePassenger"
+            app:layout_constraintEnd_toEndOf="@id/txtDateFromPassenger"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtNumberPassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtNumberPassenger"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/order_travel_number"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtPlaceCountPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtNumberPassenger"
+            app:layout_constraintEnd_toEndOf="@id/txtDateFromPassenger"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:text="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtPlaceCountPassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtPlaceCountPassenger"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/order_place_count"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtStateNumberPassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtPlaceCountPassenger"
+            app:layout_constraintEnd_toEndOf="@id/txtDateFromPassenger"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtStateNumberPassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtStateNumberPassenger"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/phone"
+            android:textColor="@color/colorGrey"/>
+
+        <TextView
+            android:id="@+id/txtPricePassenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtStateNumberPassenger"
+            app:layout_constraintEnd_toEndOf="@id/txtDateFromPassenger"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlueLight"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtPricePassenger"
+            app:layout_constraintBottom_toBottomOf="@id/txtPricePassenger"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/order_total_price"
+            android:textColor="@color/colorGrey"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

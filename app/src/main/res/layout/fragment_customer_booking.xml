@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="60dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/skin_gradient"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar"
+                app:layout_constraintTop_toTopOf="@id/toolbar" />
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/include_toolbar" />
+
+
+            <TextView
+                android:id="@+id/txtBusType36CB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/sleeping_room"
+                android:textStyle="bold|italic"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtBusType36CB"
+                app:spanCount="6" />
+
+            <Button
+                android:id="@+id/btnComfort"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/background_blue_rounded"
+                android:text="@string/auth_comfort"
+                android:textColor="@color/colorGreyDark"
+                app:layout_constraintStart_toStartOf="@id/recyclerCB"
+                app:layout_constraintTop_toBottomOf="@id/recyclerCB"/>
+
+            <Button
+                android:id="@+id/btnReview"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_blue_rounded"
+                android:padding="10dp"
+                android:text="Отзывы"
+                android:textColor="@color/colorGreyDark"
+                app:layout_constraintEnd_toStartOf="@+id/btnPolitics"
+                app:layout_constraintStart_toEndOf="@+id/btnComfort"
+                app:layout_constraintTop_toTopOf="@id/btnComfort" />
+
+            <Button
+                android:id="@+id/btnPolitics"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/background_blue_rounded"
+                android:text="Политика"
+                android:textColor="@color/colorGreyDark"
+                app:layout_constraintTop_toTopOf="@id/btnComfort"
+                app:layout_constraintEnd_toEndOf="@id/recyclerCB"/>
+
+            <ImageView
+                android:id="@+id/imgYourSeatCB"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/img_14"
+                app:layout_constraintStart_toStartOf="@id/recyclerCB"
+                app:layout_constraintTop_toBottomOf="@id/btnComfort" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/booking_your_seat"
+                app:layout_constraintEnd_toEndOf="@id/imgYourSeatCB"
+                app:layout_constraintStart_toStartOf="@id/imgYourSeatCB"
+                app:layout_constraintTop_toBottomOf="@id/imgYourSeatCB" />
+
+            <ImageView
+                android:id="@+id/imgFreeSeatCB"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/img_5"
+                app:layout_constraintEnd_toStartOf="@id/imgNotFreeSeatCB"
+                app:layout_constraintStart_toEndOf="@id/imgYourSeatCB"
+                app:layout_constraintTop_toBottomOf="@id/btnComfort" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/booking_free"
+                app:layout_constraintEnd_toEndOf="@id/imgFreeSeatCB"
+                app:layout_constraintStart_toStartOf="@id/imgFreeSeatCB"
+                app:layout_constraintTop_toBottomOf="@id/imgFreeSeatCB" />
+
+            <ImageView
+                android:id="@+id/imgNotFreeSeatCB"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/img_4"
+                app:layout_constraintEnd_toStartOf="@id/imgInProcessSeatCB"
+                app:layout_constraintStart_toEndOf="@id/imgFreeSeatCB"
+                app:layout_constraintTop_toBottomOf="@id/btnComfort" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/booking_not_free"
+                app:layout_constraintEnd_toEndOf="@id/imgNotFreeSeatCB"
+                app:layout_constraintStart_toStartOf="@id/imgNotFreeSeatCB"
+                app:layout_constraintTop_toBottomOf="@id/imgNotFreeSeatCB" />
+
+            <ImageView
+                android:id="@+id/imgInProcessSeatCB"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/img_6"
+                app:layout_constraintEnd_toStartOf="@id/imgCancelSeatCB"
+                app:layout_constraintStart_toEndOf="@id/imgNotFreeSeatCB"
+                app:layout_constraintTop_toBottomOf="@id/btnComfort" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/booking_in_process"
+                app:layout_constraintEnd_toEndOf="@id/imgInProcessSeatCB"
+                app:layout_constraintStart_toStartOf="@id/imgInProcessSeatCB"
+                app:layout_constraintTop_toBottomOf="@id/imgInProcessSeatCB" />
+
+            <ImageView
+                android:id="@+id/imgCancelSeatCB"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/img_6"
+                app:layout_constraintEnd_toEndOf="@id/recyclerCB"
+                app:layout_constraintTop_toBottomOf="@id/btnComfort"
+                app:tint="@color/colorRed" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/booking_canceled"
+                app:layout_constraintEnd_toEndOf="@id/imgCancelSeatCB"
+                app:layout_constraintStart_toStartOf="@id/imgCancelSeatCB"
+                app:layout_constraintTop_toBottomOf="@id/imgCancelSeatCB" />
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/booking_payment_sum_"
+                android:textColor="@color/colorGrey"
+                app:layout_constraintStart_toStartOf="@id/recyclerCB"
+                app:layout_constraintTop_toBottomOf="@id/text" />
+
+            <TextView
+                android:id="@+id/txtSumCB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/text1"
+                app:layout_constraintEnd_toEndOf="@id/recyclerCB"
+                app:layout_constraintTop_toTopOf="@id/text1" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btnBookingCB"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btn_height"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:paddingHorizontal="20dp"
+        android:text="@string/booking_seat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

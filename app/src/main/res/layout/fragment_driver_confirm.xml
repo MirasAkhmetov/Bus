@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgBackDriverConfirm"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_22"
+            app:tint="@color/colorAccent"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/imgBackDriverConfirm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="20sp"
+            android:text="@string/auth_phone_confirm"
+            android:gravity="center"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/colorGrey"
+            android:text="@string/auth_driver_confirm"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAvatarDriverConfirm"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toBottomOf="@id/text1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/ic_4"
+            android:scaleType="centerCrop"/>
+
+        <EditText
+            android:id="@+id/edtNameDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/edt_height"
+            app:layout_constraintTop_toBottomOf="@id/imgAvatarDriverConfirm"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="50dp"
+            android:drawableStart="@drawable/ic_1"
+            android:hint="@string/auth_name"
+            android:textColorHint="@color/colorText"/>
+
+        <EditText
+            android:id="@+id/edtLastNameDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/edt_height"
+            app:layout_constraintTop_toBottomOf="@id/edtNameDriverConfirm"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_1"
+            android:hint="@string/auth_last_name"
+            android:textColorHint="@color/colorText"/>
+
+
+        <TextView
+            android:id="@+id/txtBankCardDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/edt_height"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/skin_white"
+            android:elevation="7dp"
+            android:hint="Каспий номер"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textColorHint="@color/colorText"
+            app:drawableStartCompat="@drawable/ic_credit_card_24"
+            app:layout_constraintEnd_toEndOf="@+id/text"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintTop_toBottomOf="@id/edtLastNameDriverConfirm" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtBankCardDriverConfirm"
+            app:layout_constraintBottom_toBottomOf="@id/txtBankCardDriverConfirm"
+            app:layout_constraintEnd_toEndOf="@id/txtBankCardDriverConfirm"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_7"
+            android:translationZ="10dp"/>
+
+
+
+        <EditText
+            android:id="@+id/edtStateNumberDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/edt_height"
+            app:layout_constraintTop_toBottomOf="@id/txtBankCardDriverConfirm"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_6"
+            android:hint="@string/auth_state_number"
+            android:textColorHint="@color/colorText"/>
+
+        <TextView
+            android:id="@+id/txtCarTypeDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/edt_height"
+            app:layout_constraintTop_toBottomOf="@id/edtStateNumberDriverConfirm"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="10dp"
+            app:drawableStartCompat="@drawable/ic_6"
+            android:hint="@string/auth_transport_type"
+            android:textColorHint="@color/colorText"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@drawable/skin_white"
+            android:elevation="7dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtCarTypeDriverConfirm"
+            app:layout_constraintBottom_toBottomOf="@id/txtCarTypeDriverConfirm"
+            app:layout_constraintEnd_toEndOf="@id/txtCarTypeDriverConfirm"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_7"
+            android:translationZ="10dp"/>
+
+        <TextView
+            android:id="@+id/txtComfortDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/edt_height"
+            app:layout_constraintTop_toBottomOf="@id/txtCarTypeDriverConfirm"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="10dp"
+            app:drawableStartCompat="@drawable/ic_35"
+            android:hint="@string/auth_comfort"
+            android:textColorHint="@color/colorText"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@drawable/skin_white"
+            android:elevation="7dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/txtComfortDriverConfirm"
+            app:layout_constraintBottom_toBottomOf="@id/txtComfortDriverConfirm"
+            app:layout_constraintEnd_toEndOf="@id/txtComfortDriverConfirm"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_7"
+            android:translationZ="10dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardTechPassDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtComfortDriverConfirm"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardElevation="7dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:id="@+id/imgTechPassDriverConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_weight="1"/>
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/white"/>
+
+                    <ImageView
+                        android:id="@+id/imgTechPassBackDriverConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.7"
+                    android:text="@string/auth_upload_1"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardUdLichDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardTechPassDriverConfirm"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardElevation="7dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="2">
+
+                <ImageView
+                    android:id="@+id/imgUdLichDriverConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"/>
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"/>
+
+                <ImageView
+                    android:id="@+id/imgUdLichBackDriverConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.7"
+                    android:text="@string/auth_upload_2"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardPhotoTransDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardUdLichDriverConfirm"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@color/colorWhite"
+            app:cardElevation="7dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="3">
+
+                    <ImageView
+                        android:id="@+id/imgPhotoTransDriverConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_weight="1"/>
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/white"/>
+
+                    <ImageView
+                        android:id="@+id/imgPhotoTransSecondDriverConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_weight="1"/>
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/white"/>
+
+                    <ImageView
+                        android:id="@+id/imgPhotoTransThirdDriverConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.7"
+                    android:text="@string/auth_upload_3"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnConfirmDriverConfirm"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height"
+            app:layout_constraintTop_toBottomOf="@id/cardPhotoTransDriverConfirm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text"
+            app:layout_constraintEnd_toEndOf="@id/text"
+            android:layout_margin="30dp"
+            android:text="@string/confirm"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

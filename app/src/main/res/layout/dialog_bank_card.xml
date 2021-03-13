@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/edtBankPhone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edt_height"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_bank_number"
+        android:textColorHint="@color/colorText"
+        android:hint="@string/order_numver_kaspi"
+        app:mask="8 (___) ___ __ __"
+        app:maskCharacter="_"
+        app:maskStyle="normal"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edtBankName"
+        android:hint="@string/bank_name"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:drawableStart="@drawable/ic_1"
+        android:elevation="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="@dimen/edt_height"
+        android:textColorHint="@color/colorText" />
+
+    <Button
+        android:id="@+id/btnBankOk"
+        android:layout_width="100dp"
+        android:layout_height="@dimen/btn_height"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="right"
+        android:text="@string/ef_ok" />
+</LinearLayout>

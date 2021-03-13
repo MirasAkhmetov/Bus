@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="85dp"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"/>
+
+    <TextView
+        android:id="@+id/txtTimeStation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/view"
+        android:textColor="@color/colorGrey"
+        android:gravity="end"/>
+
+    <TextView
+        android:id="@+id/txtNameStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/view1"/>
+
+    <TextView
+        android:id="@+id/txtPriceStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorBlueLight"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@id/txtNameStation"
+        app:layout_constraintStart_toEndOf="@id/txtTimeStation"
+        app:layout_constraintEnd_toStartOf="@id/txtNameStation"
+        android:src="@drawable/ic_27"
+        android:layout_marginTop="5dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
