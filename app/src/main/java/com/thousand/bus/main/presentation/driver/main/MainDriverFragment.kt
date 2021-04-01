@@ -119,10 +119,10 @@ class MainDriverFragment : BaseFragment(), MainDriverView {
         getKoin().getScopeOrNull(MainScope.MAIN_DRIVER_SCOPE)?.close()
     }
 
-    override fun openHomeDriverFragment(carId:Int) {
+    override fun openHomeDriverFragment(carId:Int, carTypeId : Int) {
         activity?.replaceFragment(
             R.id.container_main_driver,
-            HomeDriverFragment.newInstance(carId = carId),
+            HomeDriverFragment.newInstance(carId = carId, carTypeId = carTypeId),
             HomeDriverFragment.TAG
         )
     }

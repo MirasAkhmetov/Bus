@@ -45,6 +45,12 @@ class AddBusPresenter(
 
     private val RC_CAR_THIRD= 5
 
+    private val RC_CAR_AVATAR= 6
+
+    private val RC_IDENTITY = 7
+
+    private val RC_IDENTITY_BACK = 8
+
     private var currentImageRequestCode = RC_PASSPORT
 
     private var carTypeList: List<CarType> = listOf()
@@ -88,6 +94,26 @@ class AddBusPresenter(
         viewState?.openGallery()
     }
 
+    fun onIdentityBtnClicked(){
+        currentImageRequestCode = RC_IDENTITY
+        viewState?.openCamera()
+    }
+
+    fun onIdentityBtnClickedGallery(){
+        currentImageRequestCode = RC_IDENTITY
+        viewState?.openGallery()
+    }
+
+    fun onIdentityBackBtnClicked(){
+        currentImageRequestCode = RC_IDENTITY_BACK
+        viewState?.openCamera()
+    }
+
+    fun onIdentityBackBtnClickedGallery(){
+        currentImageRequestCode = RC_IDENTITY_BACK
+        viewState?.openGallery()
+    }
+
     fun onCarBtnClicked() {
         currentImageRequestCode = RC_CAR
         viewState?.openCamera()
@@ -114,6 +140,16 @@ class AddBusPresenter(
 
     fun onCarThirdBtnClickedGallery() {
         currentImageRequestCode = RC_CAR_THIRD
+        viewState?.openGallery()
+    }
+
+    fun onCarAvatarClicked(){
+        currentImageRequestCode = RC_CAR_AVATAR
+        viewState?.openCamera()
+    }
+
+    fun onCarAvatarClickedGallery(){
+        currentImageRequestCode = RC_CAR_AVATAR
         viewState?.openGallery()
     }
 
@@ -169,6 +205,20 @@ class AddBusPresenter(
                                 user.carThirdBitmap = resource
                                 viewState?.showCarImageThird(resource)
                             }
+                            RC_CAR_AVATAR ->{
+                                user.carAvatarBitmap = resource
+                                viewState.showCarAvatar(resource)
+                            }
+
+                            RC_IDENTITY -> {
+                                user.identityBitmap = resource
+                                viewState?.showIdentityImage(resource)
+                            }
+                            RC_IDENTITY_BACK -> {
+                                user.identityBackBitmap = resource
+                                viewState?.showIdentityImageBack(resource)
+                            }
+
                         }
                     }
                     return true
@@ -222,6 +272,18 @@ class AddBusPresenter(
                             RC_CAR_THIRD -> {
                                 user.carThirdBitmap = resource
                                 viewState?.showCarImageThird(resource)
+                            }
+                            RC_CAR_AVATAR ->{
+                                user.carAvatarBitmap = resource
+                                viewState.showCarAvatar(resource)
+                            }
+                            RC_IDENTITY -> {
+                                user.identityBitmap = resource
+                                viewState?.showIdentityImage(resource)
+                            }
+                            RC_IDENTITY_BACK -> {
+                                user.identityBackBitmap = resource
+                                viewState?.showIdentityImageBack(resource)
                             }
 
                         }
@@ -318,49 +380,57 @@ class AddBusPresenter(
         stateNumber: String
     ) {
 
-        viewState?.showProgressBar(true)
+        if (user.identityBitmap == null || user.identityBackBitmap == null || user.carBitmap == null || user.carSecondBitmap ==null || user.carThirdBitmap == null)
+            viewState.showMessage(context.getString(R.string.fill_all_field))
+        else {
 
-        val params: MutableMap<String, RequestBody> = mutableMapOf()
 
-        params["state_number"] =
-            RequestBody.create(MediaType.parse(AppConstants.MIME_TYPE_TEXT), stateNumber)
-        params["tv"] = RequestBody.create(
-            MediaType.parse(AppConstants.MIME_TYPE_TEXT),
-            (user.car?.tv ?: 0).toString()
-        )
-        params["conditioner"] = RequestBody.create(
-            MediaType.parse(AppConstants.MIME_TYPE_TEXT),
-            (user.car?.conditioner ?: 0).toString()
-        )
-        params["baggage"] = RequestBody.create(
-            MediaType.parse(AppConstants.MIME_TYPE_TEXT),
-            (user.car?.baggage ?: 0).toString()
-        )
+            viewState?.showProgressBar(true)
 
-        user.car?.carTypeId?.let {
-            params["car_type_id"] =
-                RequestBody.create(MediaType.parse(AppConstants.MIME_TYPE_TEXT), it.toString())
-        }
-        driverInteractor.addBus(
-            params = params,
-            passportBitmap = user.passportBitmap,
-            passportBackBitmap = user.passportBackBitmap,
-            carImageBitmap = user.carBitmap,
-            carSecondBitmap = user.carSecondBitmap,
-            carThirdBitmap = user.carThirdBitmap
-        ).subscribe(
-            {
-                viewState?.openCarListDriverFragment()
-                viewState?.showProgressBar(false)
-            },
-            {
-                it.printStackTrace()
-                viewState?.showMessage(it.getErrorMessage())
-                viewState?.showProgressBar(false)
+            val params: MutableMap<String, RequestBody> = mutableMapOf()
+
+            params["state_number"] =
+                RequestBody.create(MediaType.parse(AppConstants.MIME_TYPE_TEXT), stateNumber)
+            params["tv"] = RequestBody.create(
+                MediaType.parse(AppConstants.MIME_TYPE_TEXT),
+                (user.car?.tv ?: 0).toString()
+            )
+            params["conditioner"] = RequestBody.create(
+                MediaType.parse(AppConstants.MIME_TYPE_TEXT),
+                (user.car?.conditioner ?: 0).toString()
+            )
+            params["baggage"] = RequestBody.create(
+                MediaType.parse(AppConstants.MIME_TYPE_TEXT),
+                (user.car?.baggage ?: 0).toString()
+            )
+
+            user.car?.carTypeId?.let {
+                params["car_type_id"] =
+                    RequestBody.create(MediaType.parse(AppConstants.MIME_TYPE_TEXT), it.toString())
             }
-        ).connect()
+            driverInteractor.addBus(
+                params = params,
+                passportBitmap = user.passportBitmap,
+                passportBackBitmap = user.passportBackBitmap,
+                carImageBitmap = user.carBitmap,
+                carSecondBitmap = user.carSecondBitmap,
+                carThirdBitmap = user.carThirdBitmap,
+                carAvatar = user.carAvatarBitmap,
+                identityBitmap = user.identityBitmap,
+                identityBackBitmap = user.identityBackBitmap
+            ).subscribe(
+                {
+                    viewState?.openCarListDriverFragment()
+                    viewState?.showProgressBar(false)
+                },
+                {
+                    it.printStackTrace()
+                    viewState?.showMessage(it.getErrorMessage())
+                    viewState?.showProgressBar(false)
+                }
+            ).connect()
 
-
+        }
     }
 
 }

@@ -24,6 +24,7 @@ class PlacesDriverPresenter(
         typeBus = LocalStorage.getUser()?.car?.carTypeId
 
         when(carTypeId){
+            AppConstants.CAR_TYPE_62 -> busSeatDataList = BusSeat.get62BusSeat().toList()
             AppConstants.CAR_TYPE_MINIVAN -> busSeatDataList = BusSeat.getMinivanSeat().toList()
             AppConstants.CAR_TYPE_TAXI -> busSeatDataList = BusSeat.getTaxiSeat().toList()
             AppConstants.CAR_TYPE_ALPHARD -> busSeatDataList = BusSeat.getAlphardSeat().toList()
@@ -43,17 +44,21 @@ class PlacesDriverPresenter(
 
                     it.places?.forEach { place ->
                         busSeatDataList.forEach { seat ->
-                            if (place.number == seat.id){
-                                Timber.i("PL=${place.number}==SS${seat.id}")
-                                seat.price = place.price
-                                seat.passengerId = place.passenger?.id
-                                seat.placeId = place.id
-                                when(place.status){
-                                    AppConstants.STATUS_FREE -> seat.state = BusSeat.STATE_FREE
-                                    AppConstants.STATUS_IN_PROCESS -> seat.state = BusSeat.STATE_IN_PROCESS
-                                    AppConstants.STATUS_TAKE -> seat.state = BusSeat.STATE_NOT_FREE
+
+                                if (place.number == seat.id) {
+                                    Timber.i("PL=${place.number}==SS${seat.id}")
+                                    seat.price = place.price
+                                    seat.passengerId = place.passenger?.id
+                                    seat.placeId = place.id
+                                    when (place.status) {
+                                        AppConstants.STATUS_FREE -> seat.state = BusSeat.STATE_FREE
+                                        AppConstants.STATUS_IN_PROCESS -> seat.state =
+                                            BusSeat.STATE_IN_PROCESS
+                                        AppConstants.STATUS_TAKE -> seat.state =
+                                            BusSeat.STATE_NOT_FREE
+                                    }
                                 }
-                            }
+
                         }
                     }
                     typeBus?.let { it1 -> viewState?.showBusSeatData(busSeatDataList, it1) }

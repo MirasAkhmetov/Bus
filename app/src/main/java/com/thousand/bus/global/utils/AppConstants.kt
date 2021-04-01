@@ -47,6 +47,7 @@ object AppConstants {
     const val CAR_TYPE_ALPHARD = 3
     const val CAR_TYPE_TAXI = 5
     const val CAR_TYPE_MINIVAN = 6
+    const val CAR_TYPE_62 = 7
 
 
     const val BUNDLE_NOTIFICATION = "notification"

@@ -1,12 +1,14 @@
 package com.thousand.bus.main.presentation.customer.search_result
 
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Window
-import android.widget.ImageView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.tabs.TabLayout
+import com.synnapps.carouselview.CarouselView
 import com.thousand.bus.R
 import com.thousand.bus.entity.Travel
 import com.thousand.bus.entity.TravelListQuery
@@ -18,7 +20,6 @@ import com.thousand.bus.global.extension.visible
 import com.thousand.bus.main.di.MainScope
 import com.thousand.bus.main.presentation.common.TravelAdapter
 import com.thousand.bus.main.presentation.customer.booking.BookingCustomerFragment
-import com.thousand.bus.main.presentation.customer.detail.OrderDetailCustomerFragment
 import kotlinx.android.synthetic.main.fragment_customer_search_result.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.android.ext.android.getKoin
@@ -46,9 +47,10 @@ class SearchResultCustomerFragment : BaseFragment(), SearchResultCustomerView {
     @InjectPresenter
     lateinit var presenter: SearchResultCustomerPresenter
 
+
+
     private val adapter = TravelAdapter(
         { presenter.loadDataNextPage() },
-        { presenter.onOrderDetailItemSelected(it) },
         { presenter.onOrderItemSelected(it) },
         { presenter.onOpenImageDialog(it) }
     )
@@ -77,8 +79,8 @@ class SearchResultCustomerFragment : BaseFragment(), SearchResultCustomerView {
         presenter.onFirstInit()
         recyclerCSR?.adapter = adapter
         tabLayout.addTab(tabLayout.newTab().setText("Автобус"))
-        tabLayout.addTab(tabLayout.newTab().setText("Минивэн *"))
-        tabLayout.addTab(tabLayout.newTab().setText("Такси *"))
+        tabLayout.addTab(tabLayout.newTab().setText("Минивэн"))
+        tabLayout.addTab(tabLayout.newTab().setText("Такси"))
         tabLayout.getTabAt(0)!!.setIcon(R.drawable.ic_bus)
         tabLayout.getTabAt(1)!!.setIcon(R.drawable.ic_minibus_icon)
         tabLayout.getTabAt(2)!!.setIcon(R.drawable.ic_taxi)
@@ -105,7 +107,20 @@ class SearchResultCustomerFragment : BaseFragment(), SearchResultCustomerView {
         })
 
         btnSort.setOnClickListener {
-            presenter.loadDataByFilter()
+            val builder1: AlertDialog.Builder = AlertDialog.Builder(context)
+            val sort = arrayOf("По рейтингу")
+            builder1.setItems(sort,
+                DialogInterface.OnClickListener { dialog, which ->
+                    when (which) {
+                        0 -> {
+                            dialog.dismiss()
+                            presenter.loadDataByFilter()
+                            btnSort.text = "По рейтингу"
+                        }
+                    }
+                })
+            val dialog: AlertDialog = builder1.create()
+            dialog.show()
         }
     }
 
@@ -120,28 +135,24 @@ class SearchResultCustomerFragment : BaseFragment(), SearchResultCustomerView {
         txtEmptyCSR.visible(dataList.isEmpty())
     }
 
-    override fun openBookingCustomerFragment(travelId: Int) {
+    override fun openBookingCustomerFragment(travelId: Int, carId: Int, carState : String) {
         activity?.addFragmentWithBackStack(
             R.id.container_main,
-            BookingCustomerFragment.newInstance(travelId),
+            BookingCustomerFragment.newInstance(travelId, carId, carState),
             BookingCustomerFragment.TAG
         )
     }
 
-    override fun openOrderDetailsCustomerFragment(travelId: Int) {
-        activity?.addFragmentWithBackStack(
-            R.id.container_main,
-            OrderDetailCustomerFragment.newInstance(travelId),
-            OrderDetailCustomerFragment.TAG
-        )
-    }
-
     override fun openImageDialog(travel: Travel) {
+        val images = arrayOf(travel.car?.avatar, travel.car?.image, travel.car?.image1, travel.car?.image2)
         val dialog = Dialog(context!!)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_image)
-        val image: ImageView = dialog.findViewById(R.id.imageDialog) as ImageView
-        image.setImageUrl(travel.car?.image)
+        val image: CarouselView  = dialog.findViewById(R.id.imageDialog) as CarouselView
+        image.pageCount = images.size
+        image.setImageListener { position, imageView ->
+            imageView.setImageUrl(images[position])
+        }
         dialog.show()
 
     }

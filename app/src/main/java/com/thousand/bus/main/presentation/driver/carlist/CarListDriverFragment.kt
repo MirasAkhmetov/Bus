@@ -9,14 +9,12 @@ import com.thousand.bus.R
 import com.thousand.bus.entity.Car
 import com.thousand.bus.global.base.BaseFragment
 import com.thousand.bus.global.extension.replaceFragment
-import com.thousand.bus.global.extension.replaceFragmentWithBackStack
 import com.thousand.bus.global.extension.visible
 import com.thousand.bus.global.utils.AppConstants
 import com.thousand.bus.main.di.MainScope
 import com.thousand.bus.main.presentation.common.CarListAdapter
 import com.thousand.bus.main.presentation.driver.home.HomeDriverFragment
 import com.thousand.bus.main.presentation.driver.passenger.PassengerDriverFragment
-import com.thousand.bus.main.presentation.driver.places.PlacesDriverFragment
 import com.thousand.bus.main.presentation.driver.upcoming_travel.UpcomingTravelDriverFragment
 import kotlinx.android.synthetic.main.fragment_driver_car_list.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -41,7 +39,8 @@ class CarListDriverFragment : BaseFragment(), CarListDriverView {
     @InjectPresenter
     lateinit var presenter: CarListDriverPresenter
 
-    private val carListAdapter = CarListAdapter { presenter.onCarListItemSelected(it, arguments!!.getInt(BUNDLE_CARD_TYPE))}
+    private val carListAdapter =
+        CarListAdapter { presenter.onCarListItemSelected(it, arguments!!.getInt(BUNDLE_CARD_TYPE)) }
 
     override val layoutRes: Int
         get() = R.layout.fragment_driver_car_list
@@ -61,7 +60,11 @@ class CarListDriverFragment : BaseFragment(), CarListDriverView {
             visible(true)
             setOnClickListener { }
         }
-        txtTitleToolbar?.text = getString(R.string.menu_transport)
+        if (arguments!!.getInt(BUNDLE_CARD_TYPE) == 1)
+            txtTitleToolbar?.text = getString(R.string.menu_home)
+        else if (arguments!!.getInt(BUNDLE_CARD_TYPE) == 3)
+            txtTitleToolbar?.text = getString(R.string.menu_my_passengers)
+        else txtTitleToolbar?.text = getString(R.string.menu_upcoming_travels)
         imgHomeToolbar?.setOnClickListener {
             context?.let {
                 LocalBroadcastManager.getInstance(it)
@@ -78,14 +81,15 @@ class CarListDriverFragment : BaseFragment(), CarListDriverView {
         carListAdapter.submitData(dataList)
     }
 
-    override fun openHomeDriverFragment(carId:Int) {
+    override fun openHomeDriverFragment(carId: Int, carTypeId: Int) {
         activity?.replaceFragment(
             R.id.container_main_driver,
-            HomeDriverFragment.newInstance(carId = carId),
+            HomeDriverFragment.newInstance(carId = carId, carTypeId = carTypeId),
             HomeDriverFragment.TAG
         )
     }
-    override fun openPassengerFragment(carId:Int) {
+
+    override fun openPassengerFragment(carId: Int) {
         activity?.replaceFragment(
             R.id.container_main_driver,
             PassengerDriverFragment.newInstance(carId = carId),

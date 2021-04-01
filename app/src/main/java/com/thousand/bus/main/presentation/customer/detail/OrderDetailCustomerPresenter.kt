@@ -18,8 +18,9 @@ class OrderDetailCustomerPresenter(
         customerInteractor.getTravel(travelId)
             .subscribe(
                 {
+
                     it.travel?.let { viewState?.showTravelInfo(it) }
-                    it.travel?.stations?.let { it1 -> viewState?.showStationDataList(it1) }
+
                 },
                 {
                     it.printStackTrace()

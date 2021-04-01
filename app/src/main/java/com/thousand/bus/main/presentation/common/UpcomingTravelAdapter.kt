@@ -34,16 +34,16 @@ class UpcomingTravelAdapter(val OnItemSelectedListener: (Travel) -> Unit, val on
         @SuppressLint("SetTextI18n")
         fun bind(travel: Travel){
             itemView.apply {
-                txtTransportNameUpcomingTravel?.text = travel.car?.name
+
                 txtCityFromUpcomingTravel?.text = travel.from?.city
                 txtStationFromUpcomingTravel?.text = travel.from?.station
                 txtCityToUpcomingTravel?.text = travel.to?.city
                 txtStationToUpcomingTravel?.text = travel.to?.station
+                txtCountFreePlaces?.text = "Свободно: ${travel.countFreePlaces}"
                 txtDateAndTimeUpcomingTravel?.text = travel.departureTime.getFormattedDateAndTime()
                 if (travel.minPrice != null && travel.maxPrice != null)
-                    txtPriceUpcomingTravel?.text = context.getString(R.string.price_value, "${travel.minPrice}-${travel.maxPrice}")
-                imgAvatarUpcomingTravel?.setImageUrl(travel.car?.image)
-                setOnClickListener { OnItemSelectedListener.invoke(travel) }
+                    txtPriceUpcomingTravel?.text = context.getString(R.string.price_value, "Стоимость  ${travel.minPrice}-${travel.maxPrice}")
+                btnSeeUpcomingTravel?.setOnClickListener { OnItemSelectedListener.invoke(travel) }
                 btnDeleteUpcomingTravel?.setOnClickListener { onDeleteItemListener.invoke(travel) }
             }
         }

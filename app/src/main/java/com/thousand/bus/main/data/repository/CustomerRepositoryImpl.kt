@@ -59,6 +59,9 @@ class CustomerRepositoryImpl(
     override fun getFeedbackList(carId: Int?): Single<Feedback> =
         serverService.getFeedbackList(carId)
 
+    override fun getFeedbackListPagination(page: Int, carId: Int?): Single<Feedback> =
+        serverService.getFeedbackListPagination(page, carId)
+
 
     override fun getTravel(travelId: Int): Single<TravelAndPlace> =
         serverService.getTravel(travelId)
@@ -66,8 +69,14 @@ class CustomerRepositoryImpl(
     override fun becomePassenger(): Completable =
         serverService.becomePassenger()
 
-    override fun placeReservation(travelId: Int?, places: Map<String, String>): Single<String> =
+    override fun getPushToDriver(id: Int?, orderId: Int?): Single<PushToDriver> =
+        serverService.getPushToDriver(id, orderId)
+
+
+    override fun placeReservation(travelId: Int?, places: Map<String, String>): Single<Order> =
         serverService.placeReservation(travelId, places)
+
+
 
     override fun getMyTickets(): Single<List<Ticket>> =
         serverService.getMyTickets()

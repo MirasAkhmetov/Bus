@@ -32,8 +32,11 @@ class DriverRepositoryImpl(
         passportImageBack: MultipartBody.Part?,
         carImage: MultipartBody.Part?,
         carImageSecond: MultipartBody.Part?,
-        carImageThird: MultipartBody.Part?
-    ): Single<User> = serverService.addBus(params,  passportImage, passportImageBack, carImage, carImageSecond, carImageThird)
+        carImageThird: MultipartBody.Part?,
+        carAvatar: MultipartBody.Part?,
+        identityImage : MultipartBody.Part?,
+        identityImageBack : MultipartBody.Part?
+    ): Single<User> = serverService.addBus(params,  passportImage, passportImageBack, carImage, carImageSecond, carImageThird, carAvatar, identityImage, identityImageBack)
 
 
     override fun editPlace(travelPlaceId: Int?, status: String?, passengerId: Int?): Completable =

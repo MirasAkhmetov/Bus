@@ -21,7 +21,7 @@ data class Ticket(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("number")
-    val number: Int? = null,
+    val number: List<Int>? = null,
     @SerializedName("car_type_count_places")
     val car_type_count_places: Int? = null,
     @SerializedName("price")

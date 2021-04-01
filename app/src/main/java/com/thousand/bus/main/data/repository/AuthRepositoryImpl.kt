@@ -7,6 +7,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Part
 
 class AuthRepositoryImpl(
     private val serverService: ServerService
@@ -30,9 +31,10 @@ class AuthRepositoryImpl(
         identityImageBack: MultipartBody.Part?,
         carImage: MultipartBody.Part?,
         carImageSecond: MultipartBody.Part?,
-        carImageThird: MultipartBody.Part?
+        carImageThird: MultipartBody.Part?,
+        carAvatar: MultipartBody.Part?
     ): Single<User> =
-        serverService.confirmation(params, avatar, passportImage, passportImageBack, identityImage,identityImageBack, carImage, carImageSecond, carImageThird)
+        serverService.confirmation(params, avatar, passportImage, passportImageBack, identityImage,identityImageBack, carImage, carImageSecond, carImageThird, carAvatar)
 
     override fun editProfile(params: Map<String, RequestBody>?, avatar: MultipartBody.Part?) =
         serverService.editProfile(params, avatar)
@@ -46,9 +48,10 @@ class AuthRepositoryImpl(
         identityImageBack: MultipartBody.Part?,
         carImage: MultipartBody.Part?,
         carImageSecond: MultipartBody.Part?,
-        carImageThird: MultipartBody.Part?
+        carImageThird: MultipartBody.Part?,
+        carAvatar: MultipartBody.Part?
     ): Completable =
-        serverService.roleDriver(params, avatar, passportImage, passportImageBack, identityImage,identityImageBack, carImage, carImageSecond, carImageThird)
+        serverService.roleDriver(params, avatar, passportImage, passportImageBack, identityImage,identityImageBack, carImage, carImageSecond, carImageThird, carAvatar)
 
     override fun rolePassenger(): Completable =
         serverService.rolePassenger()
@@ -64,5 +67,8 @@ class AuthRepositoryImpl(
 
     override fun logout(token: String): Completable =
         serverService.logout(token)
+
+    override fun confirmThePlace(orderId: Int?): Single<String> =
+        serverService.confirmThePlace(orderId)
 
 }

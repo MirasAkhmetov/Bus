@@ -29,11 +29,15 @@ interface CustomerRepository {
 
     fun getFeedbackList(carId: Int?) : Single<Feedback>
 
+    fun getFeedbackListPagination(page: Int, carId: Int?) : Single<Feedback>
+
     fun getTravel(travelId: Int): Single<TravelAndPlace>
 
     fun becomePassenger(): Completable
 
-    fun placeReservation(travelId: Int?, places: Map<String, String>): Single<String>
+    fun getPushToDriver(id : Int ?, orderId : Int?) : Single<PushToDriver>
+
+    fun placeReservation(travelId: Int?, places: Map<String, String>): Single<Order>
 
     fun getMyTickets(): Single<List<Ticket>>
 

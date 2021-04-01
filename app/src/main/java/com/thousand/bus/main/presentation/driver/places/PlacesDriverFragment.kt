@@ -9,8 +9,10 @@ import com.thousand.bus.R
 import com.thousand.bus.entity.BusSeat
 import com.thousand.bus.global.base.BaseFragment
 import com.thousand.bus.global.extension.visible
+import com.thousand.bus.global.utils.AppConstants
 import com.thousand.bus.main.di.MainScope
 import com.thousand.bus.main.presentation.common.BusSeatAdapter
+import kotlinx.android.synthetic.main.fragment_customer_booking.*
 import kotlinx.android.synthetic.main.fragment_driver_places.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.android.ext.android.getKoin
@@ -89,6 +91,10 @@ class PlacesDriverFragment : BaseFragment(), PlacesDriverView {
 
     override fun showBusSeatData(dataList: List<BusSeat>, typeBus:Int) {
         adapter.submitData(dataList, typeBus)
+        when (typeBus) {
+            AppConstants.CAR_TYPE_50, AppConstants.CAR_TYPE_62, AppConstants.CAR_TYPE_36-> recyclerDriverPlaces?.setBackgroundResource(R.drawable.ic_schem_bus_36)
+            else -> recyclerDriverPlaces?.setBackgroundResource(R.drawable.ic_schem_taxi)
+        }
     }
 
 }

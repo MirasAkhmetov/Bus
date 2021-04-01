@@ -43,6 +43,7 @@ class DriverConfirmPresenter(
     private val RC_IDENTITY_BACK = 6
     private val RC_CAR_SECOND = 7
     private val RC_CAR_THIRD = 8
+    private val RC_CAR_AVATAR= 9
 
     private var currentImageRequestCode = RC_AVATAR
 
@@ -149,6 +150,18 @@ class DriverConfirmPresenter(
         currentImageRequestCode = RC_CAR_THIRD
         viewState?.openGallery()
     }
+
+    fun onCarAvatarClicked(){
+        currentImageRequestCode = RC_CAR_AVATAR
+        viewState?.openCamera()
+    }
+
+    fun onCarAvatarClickedGallery(){
+        currentImageRequestCode = RC_CAR_AVATAR
+        viewState?.openGallery()
+    }
+
+
     fun onSetImagePath(path: String){
         getBitmapFromUri(path)
     }
@@ -213,6 +226,10 @@ class DriverConfirmPresenter(
                                 user.carThirdBitmap = resource
                                 viewState?.showCarImageThird(resource)
                             }
+                            RC_CAR_AVATAR ->{
+                                user.carAvatarBitmap = resource
+                                viewState.showCarAvatar(resource)
+                            }
                         }
                     }
                     return true
@@ -275,6 +292,10 @@ class DriverConfirmPresenter(
                             RC_CAR_THIRD -> {
                                 user.carThirdBitmap = resource
                                 viewState?.showCarImageThird(resource)
+                            }
+                            RC_CAR_AVATAR ->{
+                                user.carAvatarBitmap = resource
+                                viewState.showCarAvatar(resource)
                             }
                         }
                     }
@@ -399,7 +420,8 @@ class DriverConfirmPresenter(
                 identityBackBitmap = user.identityBackBitmap,
                 carImageBitmap = user.carBitmap,
                 carSecondBitmap = user.carSecondBitmap,
-                carThirdBitmap = user.carThirdBitmap
+                carThirdBitmap = user.carThirdBitmap,
+                carAvatar = user.carAvatarBitmap
             ).subscribe(
                 {
                     LocalStorage.setUser(it)
@@ -421,7 +443,8 @@ class DriverConfirmPresenter(
                 identityBackBitmap = user.identityBackBitmap,
                 carImageBitmap = user.carBitmap,
                 carSecondBitmap = user.carSecondBitmap,
-                carThirdBitmap = user.carThirdBitmap
+                carThirdBitmap = user.carThirdBitmap,
+                carAvatar = user.carAvatarBitmap
             ).subscribe(
                 {
                     authInteractor.auth()

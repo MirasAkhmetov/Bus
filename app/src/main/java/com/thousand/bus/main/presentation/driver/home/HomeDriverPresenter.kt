@@ -34,7 +34,6 @@ class HomeDriverPresenter(
     private var calendar = Calendar.getInstance()
 
     private var cityList: List<City> = listOf()
-    private var car = Car()
     private var createTravel = CreateTravel()
     private var dateSelected = 0
     private var date: String = ""
@@ -42,10 +41,11 @@ class HomeDriverPresenter(
 
     fun onFirstInit(){
 
-        when (LocalStorage.getUser()?.car?.carTypeId) {
-            AppConstants.CAR_TYPE_50 -> viewState.isCheckBusType(false)
-            AppConstants.CAR_TYPE_36 -> viewState.isCheckBusType(true)
-        }
+//        when (LocalStorage.getUser()?.car?.carTypeId) {
+//
+//            AppConstants.CAR_TYPE_36 -> viewState.isCheckBusType(true)
+//            else -> viewState.isCheckBusType(false)
+//        }
 
         when(LocalStorage.getUser()?.confirmation){
             AppConstants.CONFIRMATION_CONFIRM -> viewState?.driverIsActive(true)

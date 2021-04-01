@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thousand.bus.R
 import com.thousand.bus.entity.Ticket
 import com.thousand.bus.global.extension.getFormattedDate
+import com.thousand.bus.global.extension.getFormattedDateV
 import com.thousand.bus.global.extension.getFormattedTime
 import com.thousand.bus.global.extension.visible
 import com.thousand.bus.global.utils.AppConstants
@@ -41,9 +42,7 @@ class TicketAdapter(val onTakeBackBtnClicked:(Ticket) -> Unit): RecyclerView.Ada
         fun bind(ticket: Ticket){
             itemView.apply {
                 txtTimeFromMyTicket?.text = ticket.departureTime?.getFormattedTime()
-                txtTimeToMyTicket?.text = ticket.destinationTime?.getFormattedTime()
-                txtDateFromMyTicket?.text = ticket.departureTime?.getFormattedDate()
-                txtDateToMyTicket?.text = ticket.destinationTime?.getFormattedDate()
+                txtDateFromMyTicket?.text = ticket.departureTime?.getFormattedDateV()
                 txtCityFromMyTicket?.text = ticket.fromCity
                 txtStationFromMyTicket?.text = ticket.fromStation
                 txtCityToMyTicket?.text = ticket.toCity
@@ -61,34 +60,31 @@ class TicketAdapter(val onTakeBackBtnClicked:(Ticket) -> Unit): RecyclerView.Ada
                     imgMainMyTicket.setColorFilter(ContextCompat.getColor(context, R.color.colorRed))
 
                 if(ticket.status =="in_process"){
-                    txtInProgress?.text = "В ожидании"
                     btnCancelMyTicket?.visible(false)
-                    imgMainMyTicket?.setColorFilter(ContextCompat.getColor(context, R.color.colorYellow))
                 }
                 else {
-                    imgMainMyTicket?.setColorFilter(null)
+                    imgLeftTicket?.setImageResource(R.drawable.ic_ticket_buy)
                     btnCancelMyTicket.visible(departureDate?.after(calendarInstance.time))
                 }
 
-                if (ticket.car_type_count_places == 36) {
+                var places =""
+                for ( item in ticket.number!!) {
+                    var placeNumber = item
+                    if (ticket.car_type_count_places == 36) {
 
-                    ticket.number?.let {
-                        if (it in 17..32) {
-                            txtPlaceNumberMyTicket?.text = "${it.minus(16)}↑"
-                        } else {
+                        when{
 
-                            if (it == 33 || it == 34) {
-                                txtPlaceNumberMyTicket?.text = "0↑"
-                            } else if (it == 35 || it == 36) {
-                                txtPlaceNumberMyTicket?.text = "0↓"
-                            } else {
-                                txtPlaceNumberMyTicket?.text = "$it↓"
-                            }
+                            placeNumber in 1..16-> places += "${placeNumber}↓, "
+                            placeNumber in 17..32 -> places += "${placeNumber.minus(16)}↑, "
+                            placeNumber ==33 || placeNumber ==34 -> places+= "0↑, "
+                            placeNumber ==35 || placeNumber ==36 -> places+= "0↓, "
+
+
                         }
+                    } else {
+                       places += "${placeNumber}, "
                     }
-
-                } else {
-                    txtPlaceNumberMyTicket?.text = ticket.number.toString()
+                    txtPlaceNumberMyTicket?.text = places.substring(0..(places.count().minus(3)))
                 }
 
                 btnCancelMyTicket?.setOnClickListener {

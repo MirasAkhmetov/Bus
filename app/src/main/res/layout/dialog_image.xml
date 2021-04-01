@@ -5,11 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <ImageView
+    <com.synnapps.carouselview.CarouselView
         android:id="@+id/imageDialog"
         android:layout_width="wrap_content"
         android:layout_height="350dp"
         android:padding = "2dp"
+        app:fillColor="@color/colorBlueLight"
+        app:radius="8dp"
+        app:autoPlay="false"
+        app:pageColor="@color/colorWhite"
         android:background="@android:color/white"
         android:adjustViewBounds="true"/>
 

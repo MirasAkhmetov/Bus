@@ -11,8 +11,8 @@ data class Review(
     val surname : String? = null,
     val avatar : String? = null,
     val text : String? = null,
-    var rating : Float? = null,
-    var criterion1 : Int? = null,
-    var criterion2 : Int? = null,
-    var criterion3 : Int? = null
+    var rating : Double? = null,
+    var criterion1 : Double? = null,
+    var criterion2 : Double? = null,
+    var criterion3 : Double? = null
 ): Parcelable

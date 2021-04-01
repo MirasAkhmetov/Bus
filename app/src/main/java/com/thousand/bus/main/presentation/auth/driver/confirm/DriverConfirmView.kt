@@ -30,6 +30,8 @@ interface DriverConfirmView : BaseMvpView {
 
     fun uploadImageIdBack()
 
+    fun uploadCarAvatar()
+
     fun showAvatarImage(bitmap: Bitmap)
 
     fun showPassportImage(bitmap: Bitmap)
@@ -45,6 +47,8 @@ interface DriverConfirmView : BaseMvpView {
     fun showCarImageSecond(bitmap: Bitmap)
 
     fun showCarImageThird(bitmap: Bitmap)
+
+    fun showCarAvatar(bitmap: Bitmap)
 
     fun openListDialogFragment(isMultiple: Boolean, dataList: ArrayList<ListItem>)
 

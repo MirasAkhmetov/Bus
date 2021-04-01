@@ -38,15 +38,15 @@ class CarListAdapter(val OnItemSelectedListener: (Car) -> Unit) :
         @SuppressLint("SetTextI18n")
         fun bind(car: Car) {
             itemView.apply {
-                if (car.carTypeId == 3) {
-                    txtTypeTransport?.text = "Альфард"
-                } else if (car.carTypeId ==4){
+                if (car.carTypeId == 3 || car.carTypeId == 6) {
+                    txtTypeTransport?.text = "Минивэн"
+                } else if (car.carTypeId ==5){
                     txtTypeTransport?.text = "Машина"
                 } else {
                     txtTypeTransport?.text = "Автобус"
                 }
                 txtNumberTransport?.text = car.stateNumber
-                imgAvatarCarList?.setImageUrl(car.image)
+                imgAvatarCarList?.setImageUrl(car.avatar)
                 setOnClickListener { OnItemSelectedListener.invoke(car) }
 
                 if (car.is_confirmed == 0){

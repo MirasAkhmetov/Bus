@@ -9,9 +9,7 @@ interface SearchResultCustomerView : BaseMvpView {
 
     fun showTravelData(dataList: List<Travel>)
 
-    fun openBookingCustomerFragment(travelId: Int)
-
-    fun openOrderDetailsCustomerFragment(travelId: Int)
+    fun openBookingCustomerFragment(travelId: Int, carId: Int, carState : String)
 
     fun openImageDialog(travel: Travel)
 

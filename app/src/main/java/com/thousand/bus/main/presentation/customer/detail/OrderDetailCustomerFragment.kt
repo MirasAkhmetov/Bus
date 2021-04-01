@@ -1,6 +1,7 @@
 package com.thousand.bus.main.presentation.customer.detail
 
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,7 +18,10 @@ import com.thousand.bus.global.extension.getFormattedDate
 import com.thousand.bus.global.extension.getFormattedTime
 import com.thousand.bus.global.extension.visible
 import com.thousand.bus.main.di.MainScope
+import com.thousand.bus.main.presentation.customer.feedback_list.FeedbackListCustomerFragment
+import com.thousand.bus.main.presentation.customer.pre_payment.PrePaymentCustomerFragment
 import kotlinx.android.synthetic.main.fragment_order_details.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.android.ext.android.getKoin
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
@@ -25,7 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class OrderDetailCustomerFragment : BaseFragment(), OrderDetailCustomerView, OnMapReadyCallback {
+class OrderDetailCustomerFragment : BaseFragment(), OrderDetailCustomerView {
 
     companion object{
 
@@ -55,15 +59,14 @@ class OrderDetailCustomerFragment : BaseFragment(), OrderDetailCustomerView, OnM
     override val layoutRes: Int
         get() = R.layout.fragment_order_details
 
-    private val adapter = StationAdapter()
-    private var googleMap: GoogleMap? = null
 
     override fun setUp(savedInstanceState: Bundle?) {
-        rootOD.setOnClickListener { activity?.onBackPressed() }
-        recyclerStationOD?.adapter = adapter
-        mapViewOD?.onCreate(savedInstanceState)
-        mapViewOD?.onResume()
-        mapViewOD?.getMapAsync(this)
+        imgBackToolbar?.apply {
+            visible(true)
+            setOnClickListener { activity?.onBackPressed() }
+        }
+        txtTitleToolbar?.text = getString(R.string.booking)
+
     }
 
     override fun onDestroy() {
@@ -72,16 +75,7 @@ class OrderDetailCustomerFragment : BaseFragment(), OrderDetailCustomerView, OnM
     }
 
     override fun showTravelInfo(travel: Travel) {
-        txtTransportTypeOD?.text = travel.car?.name
-        txtCityFromOD?.text = travel.from?.city
-        txtTimeFromOD?.text = travel.departureTime.getFormattedTime()
-        txtDateFromOD?.text = travel.departureTime.getFormattedDate()
 
-        txtCityToOD?.text = travel.to?.city
-        txtTimeToOD?.text = travel.destinationTime.getFormattedTime()
-        txtDateToOD?.text = travel.destinationTime.getFormattedDate()
-
-        txtPriceToOD?.text = getString(R.string.price_value, travel.maxPrice.toString())
 
         imgTelevisionOD?.visible(travel.car?.tv == 1)
         txtTelevisionOD?.visible(travel.car?.tv == 1)
@@ -92,39 +86,9 @@ class OrderDetailCustomerFragment : BaseFragment(), OrderDetailCustomerView, OnM
         imgBaggageOD?.visible(travel.car?.baggage == 1)
         txtBaggageOD?.visible(travel.car?.baggage == 1)
 
-        if (travel.from?.lat != null) {
-            mapViewOD?.visible(true)
 
-            googleMap?.apply {
-                val latLng = LatLng(
-                    travel.from.lat,
-                    travel.from.lng ?: 0.0
-                )
-                addMarker(MarkerOptions().position(latLng))
-                moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-            }
-        }
-
-        if (travel.departureTime != null && travel.destinationTime != null){
-            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val fromDate = simpleDateFormat.parse(travel.departureTime)
-            val toDate = simpleDateFormat.parse(travel.destinationTime)
-            val totalTime = (toDate?.time ?: 0L) - (fromDate?.time ?: 0L)
-            txtDuration?.text = getString(
-                R.string.order_duration,
-                TimeUnit.MILLISECONDS.toHours(totalTime),
-                TimeUnit.MILLISECONDS.toMinutes(totalTime) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(totalTime))
-            )
-        }
     }
 
-    override fun onMapReady(googleMap: GoogleMap?) {
-        this.googleMap = googleMap
-        presenter.onFirstInit()
-    }
 
-    override fun showStationDataList(dataList: List<Station>) {
-        adapter.submitData(dataList)
-    }
 
 }

@@ -6,5 +6,8 @@ import com.thousand.bus.global.base.BaseMvpView
 
 interface FeedbackListCustomerView : BaseMvpView {
 
-    fun showFeedbackList(dataList:List<Review>, feedback: Feedback)
+    fun showFeedbackList(feedback: Feedback)
+
+    fun showFeedbackData(dataList: List<Review>)
+
 }

@@ -7,6 +7,7 @@ import com.thousand.bus.global.utils.MultipartHelper
 import com.thousand.bus.main.data.repository.DriverRepository
 import io.reactivex.Completable
 import io.reactivex.Single
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
 class DriverInteractor(
@@ -45,7 +46,10 @@ class DriverInteractor(
         passportBackBitmap: Bitmap? = null,
         carImageBitmap: Bitmap? = null,
         carSecondBitmap: Bitmap? = null,
-        carThirdBitmap: Bitmap? = null
+        carThirdBitmap: Bitmap? = null,
+        carAvatar: Bitmap? = null,
+        identityBitmap : Bitmap? = null,
+        identityBackBitmap : Bitmap? = null
     ): Single<User> =
         driverRepository.addBus(
             params,
@@ -53,7 +57,10 @@ class DriverInteractor(
             MultipartHelper.getBitmapDataFromPath("passport_image_back", passportBackBitmap),
             MultipartHelper.getBitmapDataFromPath("car_image", carImageBitmap),
             MultipartHelper.getBitmapDataFromPath("car_image1", carSecondBitmap),
-            MultipartHelper.getBitmapDataFromPath("car_image2", carThirdBitmap))
+            MultipartHelper.getBitmapDataFromPath("car_image2", carThirdBitmap),
+            MultipartHelper.getBitmapDataFromPath("avatar", carAvatar),
+            MultipartHelper.getBitmapDataFromPath("identify_image", identityBitmap),
+            MultipartHelper.getBitmapDataFromPath("identify_image_back", identityBackBitmap))
             .subscribeOn(schedulersProvider.io())
             .observeOn(schedulersProvider.ui())
 

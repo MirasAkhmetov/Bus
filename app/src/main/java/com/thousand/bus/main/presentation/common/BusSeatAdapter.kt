@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thousand.bus.R
@@ -33,7 +31,13 @@ class BusSeatAdapter(val OnItemSelectedListener: (BusSeat) -> Unit): RecyclerVie
     private var typeBus: Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
-        MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_bus_seat, parent, false))
+        MyViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_bus_seat,
+                parent,
+                false
+            )
+        )
 
     override fun getItemCount(): Int = dataList.size
 
@@ -53,8 +57,12 @@ class BusSeatAdapter(val OnItemSelectedListener: (BusSeat) -> Unit): RecyclerVie
         fun bind(busSeat: BusSeat){
             itemView.apply {
 
+
                 when (typeBus) {
                     AppConstants.CAR_TYPE_50 -> {
+                        txtBusSeat?.text = if (busSeat.id != null) busSeat.id.toString() else ""
+                    }
+                    AppConstants.CAR_TYPE_62 -> {
                         txtBusSeat?.text = if (busSeat.id != null) busSeat.id.toString() else ""
                     }
                     AppConstants.CAR_TYPE_ALPHARD -> {
@@ -72,9 +80,11 @@ class BusSeatAdapter(val OnItemSelectedListener: (BusSeat) -> Unit): RecyclerVie
                         txtBusSeat.textSize = context.resources.getDimension(R.dimen.txt_place)
 
                         if (busSeat.typeUpDown == 1) {
-                            txtBusSeat?.text = if (busSeat.upDownId != null) "${busSeat.upDownId}↓" else ""
+                            txtBusSeat?.text =
+                                if (busSeat.upDownId != null) "${busSeat.upDownId}↓" else ""
                         } else {
-                            txtBusSeat?.text = if (busSeat.upDownId != null) "${busSeat.upDownId}↑" else ""
+                            txtBusSeat?.text =
+                                if (busSeat.upDownId != null) "${busSeat.upDownId}↑" else ""
                         }
                     }
                 }
@@ -83,6 +93,8 @@ class BusSeatAdapter(val OnItemSelectedListener: (BusSeat) -> Unit): RecyclerVie
                 imgBusSeat?.setImageResource(R.drawable.img_15)
                 imgBusSeat?.colorFilter = null
 
+
+
                 when(busSeat.state) {
                     STATE_FREE -> imgBusSeat?.setImageResource(R.drawable.img_5)
                     STATE_NOT_FREE -> imgBusSeat?.setImageResource(R.drawable.img_4)
@@ -90,7 +102,12 @@ class BusSeatAdapter(val OnItemSelectedListener: (BusSeat) -> Unit): RecyclerVie
                     STATE_YOUR -> imgBusSeat?.setImageResource(R.drawable.img_14)
                     STATE_CANCEL -> {
                         imgBusSeat?.setImageResource(R.drawable.img_4)
-                        imgBusSeat?.setColorFilter(ContextCompat.getColor(context, R.color.colorRed))
+                        imgBusSeat?.setColorFilter(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.colorRed
+                            )
+                        )
                     }
                     STATE_DRIVER -> imgBusSeat?.setImageResource(R.drawable.img_7)
                     STATE_EMPTY -> imgBusSeat?.setBackgroundResource(R.drawable.img_15)

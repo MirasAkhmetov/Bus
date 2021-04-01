@@ -38,7 +38,7 @@ interface HomeDriverView : BaseMvpView {
 
     fun showDateFromToData(dataList: MutableList<FromTo>)
 
-    fun isCheckBusType(is36Seat: Boolean)
+//    fun isCheckBusType(is36Seat: Boolean)
 
 
 }

@@ -1,43 +1,30 @@
 package com.thousand.bus.main.presentation.common.dialog
 
-import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
-import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.thousand.bus.R
-import com.thousand.bus.entity.Car
 import com.thousand.bus.global.base.BaseDialogFragment
 import com.thousand.bus.global.extension.visible
-import com.thousand.bus.main.data.interactor.AuthInteractor
 import com.thousand.bus.main.di.MainScope
-import com.thousand.bus.main.presentation.common.list.ListDialogPresenter
-import com.thousand.bus.main.presentation.driver.add.AddBusPresenter
-import com.thousand.bus.main.presentation.driver.passenger.PassengerDriverFragment
 import kotlinx.android.synthetic.main.fragment_dialog.*
-import kotlinx.android.synthetic.main.fragment_dialog.view.*
 import org.koin.android.ext.android.getKoin
 import org.koin.core.qualifier.named
 
 class FeedbackDialogFragment : BaseDialogFragment(), FeedbackDialogView {
 
-    companion object{
+    companion object {
         val TAG = "FeedbackDialogFragment"
         val BUNDLE_CAR_ID = "car_id"
 
-        fun newInstance(carId:Int): FeedbackDialogFragment =
+        fun newInstance(carId: Int): FeedbackDialogFragment =
             FeedbackDialogFragment().apply {
                 arguments = Bundle().apply {
                     putInt(BUNDLE_CAR_ID, carId)
                 }
             }
     }
-
 
 
     @InjectPresenter
@@ -68,31 +55,31 @@ class FeedbackDialogFragment : BaseDialogFragment(), FeedbackDialogView {
 
             val rate = rating.toInt()
 
-            when(rate){
-                    5->{
-                        reviewThree.visible(false)
-                        reviewClean.rating = 5F
-                        reviewAction.rating = 5F
-                        reviewSpeed.rating = 5F
-                    }
+            when (rate) {
+                5 -> {
+                    reviewThree.visible(false)
+                    reviewClean.rating = 5F
+                    reviewAction.rating = 5F
+                    reviewSpeed.rating = 5F
+                }
 
-                    else-> {
-                        reviewThree.visible(true)
-                        reviewClean.rating
-                        reviewAction.rating
-                        reviewSpeed.rating
-
-                    }
+                else -> {
+                    reviewThree.visible(true)
+                    reviewClean.rating
+                    reviewAction.rating
+                    reviewSpeed.rating
 
                 }
+
+            }
         }
 
         reviewSendButton.setOnClickListener {
             presenter.onSubmitBtnClicked(
                 text = editText.text.toString(),
-                cleanliness =  reviewClean.rating,
-                behaviour =  reviewAction.rating,
-                convenience =  reviewSpeed.rating
+                cleanliness = reviewClean.rating,
+                behaviour = reviewAction.rating,
+                convenience = reviewSpeed.rating
             )
         }
 

@@ -66,7 +66,7 @@ class MainDriverPresenter(
         driverInteractor.getCarList().subscribe({
             if (it.size > 1)
                 viewState?.openCarListDriverFragment()
-            else viewState?.openHomeDriverFragment(it[0].id!!)
+            else viewState?.openHomeDriverFragment(it[0].id!!, it[0].carTypeId!!)
         },
             {
                 it.printStackTrace()

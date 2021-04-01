@@ -1,5 +1,6 @@
 package com.thousand.bus.main.di
 
+import com.thousand.bus.entity.FeedbackListQuery
 import com.thousand.bus.entity.ListItem
 import com.thousand.bus.entity.Place
 import com.thousand.bus.entity.TravelListQuery
@@ -13,6 +14,7 @@ import com.thousand.bus.main.presentation.auth.restore.phone.PhoneRestorePresent
 import com.thousand.bus.main.presentation.auth.sign_in.SignInPresenter
 import com.thousand.bus.main.presentation.auth.sign_up.sms.SignUpSmsPresenter
 import com.thousand.bus.main.presentation.auth.sign_up.welcome.SignUpWelcomePresenter
+import com.thousand.bus.main.presentation.common.dialog.ConfirmPlaceDialogPresenter
 import com.thousand.bus.main.presentation.common.dialog.FeedbackDialogPresenter
 import com.thousand.bus.main.presentation.common.profile.ProfilePresenter
 import com.thousand.bus.main.presentation.customer.booking.BookingCustomerPresenter
@@ -79,7 +81,7 @@ val mainModule = module {
     }
 
     scope(named(MainScope.BOOKING_CUSTOMER_SCOPE)){
-        scoped { (travelId: Int) -> BookingCustomerPresenter(travelId, get()) }
+        scoped { (travelId: Int, carId : Int, carState: String) -> BookingCustomerPresenter(travelId,carId,carState, get()) }
     }
 
     scope(named(MainScope.ORDER_DETAIL_CUSTOMER_SCOPE)){
@@ -123,6 +125,11 @@ val mainModule = module {
         scoped { FeedbackDialogPresenter(get()) }
     }
 
+    scope(named(MainScope.CONFIRM_PLACE_DIALOG_SCOPE)){
+        scoped { ConfirmPlaceDialogPresenter(get()) }
+    }
+
+
     scope(named(MainScope.PASSENGER_DRIVER_SCOPE)){
         scoped { PassengerDriverPresenter(get()) }
     }
@@ -160,7 +167,8 @@ val mainModule = module {
     }
 
     scope(named(MainScope.FEEDBACK_LIST_CUSTOMER_SCOPE)){
-        scoped { FeedbackListCustomerPresenter(get()) }
+        scoped { (carId : Int, feedbackListQuery: FeedbackListQuery) ->FeedbackListCustomerPresenter(carId,
+            feedbackListQuery, get()) }
     }
 }
 
@@ -196,5 +204,6 @@ object MainScope{
     const val PASSWORD_RESTORE_SCOPE = "PasswordRestoreScope"
     const val PHONE_RESTORE_SCOPE = "PhoneRestoreScope"
     const val FEEDBACK_LIST_CUSTOMER_SCOPE = "FeedbackListCustomerScope"
+    const val CONFIRM_PLACE_DIALOG_SCOPE = "ConfirmPlaceDialogScope"
 
 }

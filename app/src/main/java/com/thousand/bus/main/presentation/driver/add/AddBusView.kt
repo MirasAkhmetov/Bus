@@ -17,13 +17,25 @@ interface AddBusView: BaseMvpView {
 
     fun uploadImagePassport()
 
+    fun uploadCarAvatar()
+
+    fun uploadImageId()
+
+    fun uploadImageIdBack()
+
     fun uploadImagePassportBack()
 
     fun showPassportImage(bitmap: Bitmap)
 
     fun showPassportImageBack(bitmap: Bitmap)
 
+    fun showIdentityImage(bitmap: Bitmap)
+
+    fun showIdentityImageBack(bitmap: Bitmap)
+
     fun showCarImage(bitmap: Bitmap)
+
+    fun showCarAvatar(bitmap: Bitmap)
 
     fun showCarImageSecond(bitmap: Bitmap)
 

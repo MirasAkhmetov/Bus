@@ -34,13 +34,50 @@ data class BusSeat(
         const val STATE_PASS_BOTTOM_LEFT = 11
         const val STATE_PASS_BOTTOM_RIGHT = 12
 
+        val getTaxiSeatTravel : List<BusSeat> =listOf(
+                    BusSeat(STATE_FREE),
+                    BusSeat(STATE_FREE),
+                    BusSeat(STATE_FREE),
+                    BusSeat(STATE_FREE)
+                )
+
+
+
+        val getMinivanSeat : MutableList<BusSeat> = mutableListOf(
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE)
+
+        )
+
+        val getAlphardSeat : MutableList<BusSeat> = mutableListOf(
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE),
+            BusSeat(STATE_FREE)
+        )
+
+
         fun get50BusSeat(): List<BusSeat> = listOf(
+            //empty
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
 
             //1
             BusSeat(STATE_FREE, 1),
             BusSeat(STATE_FREE, 2),
-            BusSeat(STATE_PASS_TOP_LEFT),
-            BusSeat(STATE_PASS_TOP_RIGHT),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
             BusSeat(STATE_FREE, 3),
             BusSeat(STATE_FREE, 4),
 
@@ -244,6 +281,13 @@ data class BusSeat(
 
         fun getAlphardSeat(): List<BusSeat> = listOf(
 
+            //empty
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
 
             //1
             BusSeat(STATE_EMPTY),
@@ -287,7 +331,13 @@ data class BusSeat(
         )
 
         fun getTaxiSeat(): List<BusSeat> = listOf(
-
+            //empty
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
 
             //1
             BusSeat(STATE_EMPTY),
@@ -316,8 +366,16 @@ data class BusSeat(
 
         )
 
-        fun getMinivanSeat(): List<BusSeat> = listOf(
 
+
+        fun getMinivanSeat(): List<BusSeat> = listOf(
+            //empty
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
 
             //1
             BusSeat(STATE_EMPTY),
@@ -362,71 +420,141 @@ data class BusSeat(
         )
 
 
-        fun get26BusSeat(): List<BusSeat> = listOf(
+        fun get62BusSeat(): List<BusSeat> = listOf(
+            //empty
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
 
-            //1
-            BusSeat(STATE_DRIVER),
-            BusSeat(STATE_EMPTY),
-            BusSeat(STATE_PASS_TOP_LEFT),
-            BusSeat(STATE_PASS_TOP_RIGHT),
-            BusSeat(STATE_EMPTY),
-            BusSeat(STATE_OUT),
 
             //2
             BusSeat(STATE_FREE, 1),
-            BusSeat(STATE_EMPTY),
-            BusSeat(STATE_PASS_CENTER),
-            BusSeat(STATE_PASS_CENTER),
-            BusSeat(STATE_EMPTY),
             BusSeat(STATE_FREE, 2),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_FREE, 3),
+            BusSeat(STATE_FREE, 4),
 
             //3
-            BusSeat(STATE_FREE, 3),
-            BusSeat(STATE_FREE, 1),
-            BusSeat(STATE_PASS_CENTER),
-            BusSeat(STATE_PASS_CENTER),
             BusSeat(STATE_FREE, 5),
             BusSeat(STATE_FREE, 6),
-
-            //4
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
             BusSeat(STATE_FREE, 7),
             BusSeat(STATE_FREE, 8),
-            BusSeat(STATE_PASS_CENTER),
-            BusSeat(STATE_PASS_CENTER),
+
+
+
+            //4
             BusSeat(STATE_FREE, 9),
             BusSeat(STATE_FREE, 10),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_OUT),
 
             //5
             BusSeat(STATE_FREE, 11),
             BusSeat(STATE_FREE, 12),
             BusSeat(STATE_PASS_CENTER),
             BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 13),
+            BusSeat(STATE_FREE, 14),
+
+            //6
+            BusSeat(STATE_FREE, 15),
+            BusSeat(STATE_FREE, 16),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 17),
+            BusSeat(STATE_FREE, 18),
+
+            BusSeat(STATE_FREE, 19),
+            BusSeat(STATE_FREE, 20),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 21),
+            BusSeat(STATE_FREE, 22),
+
+            BusSeat(STATE_FREE, 23),
+            BusSeat(STATE_FREE, 24),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 25),
+            BusSeat(STATE_FREE, 26),
+
+            BusSeat(STATE_FREE, 27),
+            BusSeat(STATE_FREE, 28),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 29),
+            BusSeat(STATE_FREE, 30),
+
+            BusSeat(STATE_FREE, 31),
+            BusSeat(STATE_FREE, 32),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 33),
+            BusSeat(STATE_FREE, 34),
+
+            BusSeat(STATE_FREE, 35),
+            BusSeat(STATE_FREE, 36),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
             BusSeat(STATE_EMPTY),
             BusSeat(STATE_OUT),
 
-            //6
-            BusSeat(STATE_FREE, 13),
-            BusSeat(STATE_FREE, 14),
+            BusSeat(STATE_FREE, 37),
+            BusSeat(STATE_FREE, 38),
             BusSeat(STATE_PASS_CENTER),
             BusSeat(STATE_PASS_CENTER),
-            BusSeat(STATE_FREE, 15),
-            BusSeat(STATE_FREE, 16),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
 
-            //7
-            BusSeat(STATE_FREE, 17),
-            BusSeat(STATE_FREE, 18),
-            BusSeat(STATE_PASS_BOTTOM_LEFT),
-            BusSeat(STATE_PASS_BOTTOM_RIGHT),
-            BusSeat(STATE_FREE, 19),
-            BusSeat(STATE_FREE, 20),
+            BusSeat(STATE_FREE, 41),
+            BusSeat(STATE_FREE, 42),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 39),
+            BusSeat(STATE_FREE, 40),
 
-            //8
-            BusSeat(STATE_FREE, 21),
-            BusSeat(STATE_FREE, 22),
-            BusSeat(STATE_FREE, 23),
-            BusSeat(STATE_FREE, 24),
-            BusSeat(STATE_FREE, 25),
-            BusSeat(STATE_FREE, 26)
+            BusSeat(STATE_FREE, 45),
+            BusSeat(STATE_FREE, 46),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 43),
+            BusSeat(STATE_FREE, 44),
+
+            BusSeat(STATE_FREE, 49),
+            BusSeat(STATE_FREE, 50),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 47),
+            BusSeat(STATE_FREE, 48),
+
+            BusSeat(STATE_FREE, 53),
+            BusSeat(STATE_FREE, 54),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 51),
+            BusSeat(STATE_FREE, 52),
+
+            BusSeat(STATE_FREE, 57),
+            BusSeat(STATE_FREE, 58),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_PASS_CENTER),
+            BusSeat(STATE_FREE, 55),
+            BusSeat(STATE_FREE, 56),
+
+            BusSeat(STATE_FREE, 61),
+            BusSeat(STATE_FREE, 62),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_EMPTY),
+            BusSeat(STATE_FREE, 59),
+            BusSeat(STATE_FREE, 60)
         )
     }
 }

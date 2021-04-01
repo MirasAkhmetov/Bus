@@ -12,7 +12,7 @@ data class Place(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("number")
-    val number: Int? = null,
+    val number: List<Int>? = null,
     @SerializedName("price")
     var price: Int? = null,
     @SerializedName("status")

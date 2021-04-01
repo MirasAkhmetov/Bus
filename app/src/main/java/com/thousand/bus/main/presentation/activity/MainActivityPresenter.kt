@@ -52,4 +52,19 @@ class MainActivityPresenter(
             ).connect()
     }
 
+     fun confirmThePlace(orderId: Int?){
+         viewState?.showProgressBar(true)
+        authInteractor.confirmThePlace(orderId = orderId)
+            .subscribe(
+                {
+                    viewState?.showProgressBar(false)
+                    viewState?.showMessage("Подтвержено")
+                },
+                {
+                    it.printStackTrace()
+                    viewState?.showProgressBar(false)
+                }
+            ).connect()
+    }
+
 }

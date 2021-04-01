@@ -5,6 +5,7 @@
     <color name="colorAccent">#365089</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorBlack2">#2E2C2C</color>
     <color name="colorTransparent">#00000000</color>
     <color name="colorTransparentDark">#33365089</color>
     <color name="colorText">#293E6C</color>
@@ -20,4 +21,5 @@
     <color name="colorYellow">#FFC107</color>
     <color name="colorRating">#FCDE17</color>
     <color name="colorGreenNew">#37C978</color>
+    <color name="colorGreen2">#0BB286</color>
 </resources>

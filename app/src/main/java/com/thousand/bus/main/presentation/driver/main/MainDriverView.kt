@@ -6,7 +6,7 @@ import com.thousand.bus.global.base.BaseMvpView
 
 interface MainDriverView : BaseMvpView {
 
-    fun openHomeDriverFragment(carId:Int)
+    fun openHomeDriverFragment(carId:Int, carTypeId : Int)
 
     fun openCarListDriverFragment()
 

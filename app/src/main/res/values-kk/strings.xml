@@ -73,8 +73,9 @@
     <string name="auth_transport_type">Көлік түрі</string>
     <string name="auth_comfort">Қолайлылықтар</string>
     <string name="auth_upload_1">Тех паспорт фотосын жүктеңіз</string>
-    <string name="auth_upload_2">Жеке куәлік фотосын жүктеңіз</string>
-    <string name="auth_upload_3">Көліктің фотосын жүктеңіз</string>
+    <string name="auth_upload_2">Жүргізуші куәлігінің фотосын жүктеңіз</string>
+    <string name="auth_upload_3">Көліктің ішінің фотосын жүктеңіз</string>
+    <string name="auth_upload_4">Көліктің алдынан түсірілген фотосын жүктеңіз</string>
     <string name="auth_admin_confirm">Сіздің аккаунтыңыз растау процесінде, әкімшілік сіздің деректеріңізді растағанша күтіңіз</string>
     <string name="auth_bus_driver">Автобус жүргізушісі</string>
     <string name="auth_wrong_phone_format">Телефон форматы дұрыс емес</string>
@@ -101,8 +102,8 @@
     <string name="order_television">Теледидар</string>
     <string name="order_air_condition">Кондиционер</string>
     <string name="order_baggage_20_kg">Жүк 20кг</string>
-    <string name="order_car_number_">Автомобиль нөмірі:</string>
-    <string name="order_place_number_">Орын нөмірі:</string>
+    <string name="order_car_number_">Автомобиль нөмірі</string>
+    <string name="order_place_number_">Орын нөмірі</string>
     <string name="order_code_">Код:</string>
     <string name="order_total_price">Билет бағасы</string>
     <string name="order_choose_stations">Сапардың қайдан, қайда және уақытын таңдаңыз</string>
@@ -120,11 +121,11 @@
     <string name="order_place_count">Орындар саны</string>
     <string name="order_state_number">Автомобиль нөмірі</string>
     <string name="order_choose_both_cities">Алдымен екі қаланы таңдаңыз</string>
-    <string name="order_id_place">Сіздің орындарыңыз </string>
+    <string name="order_id_place">Орындарыңыз</string>
     <string name="order_id_user">Қоданушының ID</string>
     <string name="order_sum">Билет бағасы</string>
     <string name="order_transfer_info">Бұл деректерді ақша аудару кезінде хабарға енгізу керек</string>
-    <string name="order_transfer_info_kaspi">Ақшаны Каспийге %s минут ішінде аудару керек. \nОлай болмаған жағдайда, барлығын басынан бастауға тура келеді</string>
+    <string name="order_transfer_info_kaspi">Бронь уақыты біткенге дейін</string>
     <string name="order_payment">Төлем жасау</string>
     <string name="order_details">Сапар туралы мәліметтер</string>
 
@@ -139,9 +140,9 @@
 
     <string name="menu_home">Басты бет</string>
     <string name="menu_list_travels">Сапарлар тізімі</string>
-    <string name="menu_add_bus">Автобус қосу</string>
+    <string name="menu_add_bus">Транспорт қосу</string>
     <string name="menu_my_passengers">Менің жолаушыларым</string>
-    <string name="menu_upcoming_travels">Алда болатын сапарлар</string>
+    <string name="menu_upcoming_travels">Жоспарланған сапарлар</string>
     <string name="menu_tickets">Билеттер</string>
     <string name="menu_transport">Транспорттар тізімі</string>
 
@@ -183,7 +184,8 @@
     <string name="order_numver_kaspi">Аударым нөмірі</string>
     <string name="duration_road">в пути %s*</string>
     <string name="sleeping_room">жататын салон</string>
-    <string name="car_36_description">* 1 - 16 места - нижний / 17 - 32 места- верхний/ \n33 - 36 места- передний топчан</string>
+    <string name="car_36_description">* 1 - 16 орындар - астынғы / 17 - 32 орындр - үстінгі/ \n33 - 36 орындар - алдынғы топчан</string>
+    <string name="car_description">* 1 - 1 алдынғы орын</string>
     <string name="rate_your_trip">Сапарыңызға баға беріңіз</string>
     <string name="feedback_text">Сіздің ойыңыз басқа адамдарға жақсы транспорт табуға көмектеседі</string>
     <string name="send">Жіберу</string>
@@ -192,7 +194,10 @@
     <string name="clean">Көлік тазалығы</string>
     <string name="action_driver">Жүргізушінің қарым-қатынасы</string>
     <string name="punctuality">Ұқыптылық</string>
-
+    <string name="see">Қарап шығу</string>
+    <string name="time">Уақыт</string>
+    <string name="number_feedback">%.1f</string>
+    <string name="pay">Төлеу</string>
 
 
 </resources>

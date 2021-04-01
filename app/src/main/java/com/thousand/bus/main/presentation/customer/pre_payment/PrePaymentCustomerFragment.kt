@@ -71,21 +71,17 @@ class PrePaymentCustomerFragment : BaseFragment(), PrePaymentCustomerView {
     }
 
     override fun showPlaceInfo(place: Place) {
-        val user = LocalStorage.getUser()
-        imgAvatarCPP?.setCircleImageUrl(user?.avatar)
-        txtNameCPP?.text = user?.name
-      //  txtUserIdCPP?.text = user?.id?.toString()
+      //  val user = LocalStorage.getUser()
+        // txtUserIdCPP?.text = user?.id?.toString()
+        txtNumberOrder?.text = "№ ${place.travelId?.toString()}"
         txtFromTimeCPP?.text = place.departureDate?.getFormattedTime()
-        txtToTimeCPP?.text = place.destinationDate?.getFormattedTime()
         txtFromDateCPP?.text = place.departureDate?.getFormattedDateFromDateTime()
-        txtToDateCPP?.text = place.destinationDate?.getFormattedDateFromDateTime()
         txtFromCityCPP?.text = place.fromCity
         txtFromStationCPP?.text = place.fromStation
         txtToCityCPP?.text = place.toCity
         txtToStationCPP?.text = place.toStation
         txtPlaceIdCPP?.text = place.reservedPlaceId
         txtSumCPP?.text = getString(R.string.price_value, place.price.toString())
-        txtFreePlacesCPP?.text = place.car?.stateNumber
 
         val diff: Long = place.destinationDate.getFormattedDateTime() - place.departureDate.getFormattedDateTime()
         val seconds = diff / 1000
@@ -104,17 +100,13 @@ class PrePaymentCustomerFragment : BaseFragment(), PrePaymentCustomerView {
         object : CountDownTimer(TimeUnit.MINUTES.toMillis(minute.toLong()), 1000) {
             @SuppressLint("StringFormatMatches")
             override fun onTick(millisUntilFinished: Long) {
-                txtTimerPrePayment?.text = getString(
-                        R.string.order_transfer_info_kaspi,
-                        "${TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)}:${millisUntilFinished / 1000 % 60}"
-                )
+                txtTimerPrePayment?.text = "${TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)}:${millisUntilFinished / 1000 % 60}"
+
             }
 
             override fun onFinish() {
-                txtTimerPrePayment?.text = getString(
-                        R.string.order_transfer_info_kaspi,
-                        "00:00"
-                )
+                txtTimerPrePayment?.text = "00:00"
+
             }
         }.start()
     }
@@ -142,6 +134,15 @@ class PrePaymentCustomerFragment : BaseFragment(), PrePaymentCustomerView {
                     TicketCustomerFragment.newInstance(),
                     TicketCustomerFragment.TAG
             )
+    }
+
+    override fun openCallToDriver(phone: String) {
+        activity?.startActivity(
+            Intent(
+                Intent.ACTION_DIAL,
+                Uri.parse("tel: 8${phone}")
+            )
+        )
     }
 
 }

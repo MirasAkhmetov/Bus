@@ -2,7 +2,6 @@ package com.thousand.bus.main.presentation.driver.history
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -13,7 +12,6 @@ import com.thousand.bus.global.extension.visible
 import com.thousand.bus.global.utils.AppConstants
 import com.thousand.bus.main.di.MainScope
 import com.thousand.bus.main.presentation.common.TravelHistoryAdapter
-import com.thousand.bus.main.presentation.common.dialog.FeedbackDialogFragment
 import kotlinx.android.synthetic.main.fragment_recycler.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.android.ext.android.getKoin
@@ -21,7 +19,7 @@ import org.koin.core.qualifier.named
 
 class HistoryDriverFragment : BaseFragment(), HistoryDriverView {
 
-    companion object{
+    companion object {
 
         val TAG = "HistoryDriverFragment"
 
@@ -32,12 +30,15 @@ class HistoryDriverFragment : BaseFragment(), HistoryDriverView {
     @InjectPresenter
     lateinit var presenter: HistoryDriverPresenter
 
-    private val historyAdapter = TravelHistoryAdapter{ openFeedback() }
+    private val historyAdapter = TravelHistoryAdapter { }
 
     @ProvidePresenter
     fun providePresenter(): HistoryDriverPresenter {
         getKoin().getScopeOrNull(MainScope.HISTORY_DRIVER_SCOPE)?.close()
-        return getKoin().createScope(MainScope.HISTORY_DRIVER_SCOPE, named(MainScope.HISTORY_DRIVER_SCOPE)).get()
+        return getKoin().createScope(
+            MainScope.HISTORY_DRIVER_SCOPE,
+            named(MainScope.HISTORY_DRIVER_SCOPE)
+        ).get()
     }
 
     override val layoutRes: Int
@@ -46,7 +47,7 @@ class HistoryDriverFragment : BaseFragment(), HistoryDriverView {
     override fun setUp(savedInstanceState: Bundle?) {
         imgHomeToolbar?.apply {
             visible(true)
-            setOnClickListener {  }
+            setOnClickListener { }
         }
         txtTitleToolbar?.text = getString(R.string.menu_list_travels)
         imgHomeToolbar?.setOnClickListener {
@@ -70,12 +71,6 @@ class HistoryDriverFragment : BaseFragment(), HistoryDriverView {
     override fun showHistoryData(dataList: List<Travel>) {
         historyAdapter.submitData(dataList)
         txtEmptyList?.visible(dataList.isEmpty())
-    }
-
-    private fun openFeedback(){
-        var dialog = FeedbackDialogFragment()
-
-        dialog.show(requireActivity().supportFragmentManager, "custom")
     }
 
 }

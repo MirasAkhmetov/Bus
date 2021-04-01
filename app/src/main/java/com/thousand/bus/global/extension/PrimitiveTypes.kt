@@ -20,6 +20,14 @@ fun String?.getFormattedDate(): String{
     return toDate.format(date)
 }
 
+fun String?.getFormattedDateV(): String{
+    if (this == null) return ""
+    val fromDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val toDate = SimpleDateFormat("d MMMM", Locale.getDefault())
+    val date = fromDate.parse(this)
+    return toDate.format(date)
+}
+
 fun String?.getFormattedDateZ(): String{
     if (this == null) return ""
     val fromDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
@@ -63,7 +71,7 @@ fun String?.getFormattedTime(): String{
 fun String?.getFormattedDateAndTime(): String{
     if (this == null) return ""
     val fromDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-    val toDate = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+    val toDate = SimpleDateFormat("d MMMM / HH:mm", Locale.getDefault())
     val date = fromDate.parse(this)
     return toDate.format(date)
 }

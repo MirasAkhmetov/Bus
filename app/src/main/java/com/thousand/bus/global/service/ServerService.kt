@@ -41,7 +41,8 @@ interface ServerService {
         @Part identityImageBack: MultipartBody.Part?,
         @Part carImage: MultipartBody.Part?,
         @Part carImageSecond: MultipartBody.Part?,
-        @Part carImageThird: MultipartBody.Part?
+        @Part carImageThird: MultipartBody.Part?,
+        @Part carAvatar: MultipartBody.Part?
     ): Single<User>
 
     @Multipart
@@ -52,7 +53,10 @@ interface ServerService {
         @Part passportImageBack: MultipartBody.Part?,
         @Part carImage: MultipartBody.Part?,
         @Part carImageSecond: MultipartBody.Part?,
-        @Part carImageThird: MultipartBody.Part?
+        @Part carImageThird: MultipartBody.Part?,
+        @Part carAvatar: MultipartBody.Part?,
+        @Part identityImage: MultipartBody.Part?,
+        @Part identityImageBack: MultipartBody.Part?
     ): Single<User>
 
     @FormUrlEncoded
@@ -87,12 +91,18 @@ interface ServerService {
 //        @Query("baggage") baggage: Int?,
 //        @Query("tv") tv: Int?,
 //        @Query("conditioner") conditioner: Int?,
-        @QueryMap map : MutableMap<String, Any>
+        @QueryMap map: MutableMap<String, Any>
     ): Single<TravelResponse>
 
     @GET(Endpoints.FEEDBACK_LIST)
     fun getFeedbackList(
-        @Query("carId") id:Int?
+        @Query("carId") id: Int?
+    ): Single<Feedback>
+
+    @GET(Endpoints.FEEDBACK_LIST)
+    fun getFeedbackListPagination(
+        @Query("page") page: Int,
+        @Query("carId") id: Int?
     ): Single<Feedback>
 
     @GET(Endpoints.TRAVEL_SHOW)
@@ -115,7 +125,7 @@ interface ServerService {
 
     @GET(Endpoints.PASSENGERS)
     fun getPassengers(
-        @Query("carId") id:Int?
+        @Query("carId") id: Int?
     ): Single<List<Place>>
 
 
@@ -135,6 +145,18 @@ interface ServerService {
         @Query("from_city_id") fromCityId: Int,
         @Query("to_city_id") toCityId: Int
     ): Single<List<Station>>
+
+    @GET(Endpoints.PUSH_TO_DRIVER)
+    fun getPushToDriver(
+        @Query("id") id: Int?,
+        @Query("orderId") orderId: Int?
+    ): Single<PushToDriver>
+
+    @GET(Endpoints.CONFIRM_THE_PLACE)
+    fun confirmThePlace(
+        @Path("orderId") orderId: Int?
+    ) : Single<String>
+
 
     @POST(Endpoints.BECOME_PASSENGER)
     fun becomePassenger(): Completable
@@ -157,7 +179,9 @@ interface ServerService {
     fun placeReservation(
         @Field("travel_id") travelPlaceId: Int?,
         @FieldMap places: Map<String, String>
-    ): Single<String>
+    ): Single<Order>
+
+
 
     @Multipart
     @POST(Endpoints.ROLE_DRIVER)
@@ -170,7 +194,8 @@ interface ServerService {
         @Part identityImageBack: MultipartBody.Part?,
         @Part carImage: MultipartBody.Part?,
         @Part carImageSecond: MultipartBody.Part?,
-        @Part carImageThird: MultipartBody.Part?
+        @Part carImageThird: MultipartBody.Part?,
+        @Part carAvatar: MultipartBody.Part?
     ): Completable
 
     @POST(Endpoints.ROLE_PASSENGER)

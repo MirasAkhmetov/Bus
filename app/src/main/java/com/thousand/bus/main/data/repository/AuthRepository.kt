@@ -6,6 +6,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Part
 
 interface AuthRepository {
 
@@ -33,7 +34,8 @@ interface AuthRepository {
         identityImageBack: MultipartBody.Part?,
         carImage: MultipartBody.Part?,
         carImageSecond: MultipartBody.Part?,
-        carImageThird: MultipartBody.Part?
+        carImageThird: MultipartBody.Part?,
+        carAvatar: MultipartBody.Part?
     ): Single<User>
 
     fun editProfile(
@@ -50,7 +52,8 @@ interface AuthRepository {
         identityImageBack: MultipartBody.Part?,
         carImage: MultipartBody.Part?,
         carImageSecond: MultipartBody.Part?,
-        carImageThird: MultipartBody.Part?
+        carImageThird: MultipartBody.Part?,
+        carAvatar: MultipartBody.Part?
     ): Completable
 
     fun rolePassenger() : Completable
@@ -71,5 +74,7 @@ interface AuthRepository {
     ): Single<User>
 
     fun logout( token: String): Completable
+
+    fun confirmThePlace(orderId : Int?): Single<String>
 
 }

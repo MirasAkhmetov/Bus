@@ -30,6 +30,8 @@ data class User(
     var passportImage: String? = null,
     @SerializedName("passport_image_back")
     var passportImageBack: String? = null,
+    @SerializedName("car_avatar")
+    var carAvatar : String? = null,
     @SerializedName("car_image")
     var carImage: String? = null,
     @SerializedName("car_image1")
@@ -57,5 +59,6 @@ data class User(
     var passportBackBitmap: Bitmap? = null,
     var carBitmap: Bitmap? = null,
     var carSecondBitmap: Bitmap? = null,
-    var carThirdBitmap: Bitmap? = null
+    var carThirdBitmap: Bitmap? = null,
+    var carAvatarBitmap: Bitmap? = null
 ): Parcelable

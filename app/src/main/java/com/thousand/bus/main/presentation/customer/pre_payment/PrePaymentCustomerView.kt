@@ -16,4 +16,5 @@ interface PrePaymentCustomerView : BaseMvpView {
 
     fun openHomeCustomerFragment()
 
+    fun openCallToDriver(phone: String)
 }

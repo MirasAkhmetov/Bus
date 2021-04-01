@@ -49,7 +49,7 @@ class PassengerDriverFragment : BaseFragment(), PassengerDriverView {
     }
 
     override val layoutRes: Int
-        get() = R.layout.fragment_recycler
+        get() = R.layout.fragment_recycler_passenger
 
     override fun setUp(savedInstanceState: Bundle?) {
         presenter.setCarID(carId = carId)
@@ -86,5 +86,6 @@ class PassengerDriverFragment : BaseFragment(), PassengerDriverView {
             CarListDriverFragment.TAG
         )
     }
+
 
 }

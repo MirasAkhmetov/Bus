@@ -2,7 +2,6 @@ package com.thousand.bus.main.presentation.customer.booking
 
 import com.thousand.bus.entity.BusSeat
 import com.thousand.bus.entity.Place
-import com.thousand.bus.entity.Travel
 import com.thousand.bus.global.base.BaseMvpView
 
 
@@ -17,5 +16,9 @@ interface BookingCustomerView : BaseMvpView {
     fun showSleepingSalon(show: Boolean)
 
     fun openPrePaymentCustomerFragment(place: Place)
+
+    fun openViewPagerHandlerFragment(travelId: Int, carId : Int, carState: String?, tabItem : Int?)
+
+
 
 }

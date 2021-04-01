@@ -21,6 +21,9 @@ data class Car(
     var id: Int? = null,
     @SerializedName("image")
     var image: String? = null,
+    var image1: String? = null,
+    var image2: String? = null,
+    var avatar : String? = null,
     @SerializedName("state_number")
     var stateNumber: String? = null,
     @SerializedName("tv")
@@ -32,6 +35,8 @@ data class Car(
     @SerializedName("name")
     var name: String? = null,
     @SerializedName("is_confirmed")
-    var is_confirmed: Int? = null
+    var is_confirmed: Int? = null,
+    var rating: Double? = null,
+    var phone: String? = null
 
 ): Parcelable

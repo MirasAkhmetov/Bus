@@ -8,27 +8,27 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.thousand.bus.R
-import com.thousand.bus.entity.*
+import com.thousand.bus.entity.FromTo
+import com.thousand.bus.entity.ListItem
+import com.thousand.bus.entity.PriceItem
+import com.thousand.bus.entity.TravelListQuery
 import com.thousand.bus.global.base.BaseFragment
-import com.thousand.bus.global.extension.*
 import com.thousand.bus.global.extension.addFragmentWithBackStack
+import com.thousand.bus.global.extension.hideKeyboard
 import com.thousand.bus.global.extension.replaceFragmentWithBackStack
+import com.thousand.bus.global.extension.visible
 import com.thousand.bus.global.utils.AppConstants
-import com.thousand.bus.main.presentation.common.list.ListDialogFragment
 import com.thousand.bus.main.di.MainScope
+import com.thousand.bus.main.presentation.common.list.ListDialogFragment
 import com.thousand.bus.main.presentation.customer.search_result.SearchResultCustomerFragment
-import com.thousand.bus.main.presentation.driver.carlist.CarListDriverFragment
-import com.thousand.bus.main.presentation.driver.places.PlacesDriverFragment
 import com.thousand.bus.main.presentation.driver.upcoming_travel.UpcomingTravelDriverFragment
 import kotlinx.android.synthetic.main.fragment_driver_home.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.android.ext.android.getKoin
-import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import java.util.*
 import kotlin.collections.ArrayList
@@ -36,24 +36,28 @@ import kotlin.collections.ArrayList
 class HomeDriverFragment : BaseFragment(), HomeDriverView {
 
 
-    companion object{
+    companion object {
 
         val TAG = "HomeDriverFragment"
         private val BUNDLE_CAR_ID = "car_id"
-        fun newInstance( carId:Int): HomeDriverFragment=
+        private val BUNDLE_CAR_TYPE_ID = "carTypeId"
+        fun newInstance(carId: Int, carTypeId: Int): HomeDriverFragment =
             HomeDriverFragment().apply {
                 arguments = Bundle().apply {
                     putInt(HomeDriverFragment.BUNDLE_CAR_ID, carId)
+                    putInt(BUNDLE_CAR_TYPE_ID, carTypeId)
                 }
             }
 
-        }
+    }
 
 
     @InjectPresenter
     lateinit var presenter: HomeDriverPresenter
 
-    private val priceAdapter = PriceAdapter{ presenter.onPriceItemDelete(it) }
+    private val carTypeId by lazy { requireArguments().getInt(BUNDLE_CAR_TYPE_ID) }
+
+    private val priceAdapter = PriceAdapter { presenter.onPriceItemDelete(it) }
     private val dateFromToAdapter = DateFromToAdapter(
         { presenter.onFromItemSelected(it) },
         { presenter.onToItemSelected(it) },
@@ -63,21 +67,39 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
     @ProvidePresenter
     fun providePresenter(): HomeDriverPresenter {
         getKoin().getScopeOrNull(MainScope.HOME_DRIVER_SCOPE)?.close()
-         return getKoin().createScope(MainScope.HOME_DRIVER_SCOPE, named(MainScope.HOME_DRIVER_SCOPE)).get()
-        }
-
+        return getKoin().createScope(
+            MainScope.HOME_DRIVER_SCOPE,
+            named(MainScope.HOME_DRIVER_SCOPE)
+        ).get()
+    }
 
 
     override val layoutRes: Int
         get() = R.layout.fragment_driver_home
 
     override fun setUp(savedInstanceState: Bundle?) {
-        presenter.setCarId(carId = arguments!!.getInt(
-            HomeDriverFragment.BUNDLE_CAR_ID))
+        presenter.setCarId(
+            carId = arguments!!.getInt(
+                HomeDriverFragment.BUNDLE_CAR_ID
+            )
+        )
+
+        when (carTypeId) {
+            AppConstants.CAR_TYPE_36 -> {
+                text21.visible(true)
+            }
+            AppConstants.CAR_TYPE_TAXI, AppConstants.CAR_TYPE_ALPHARD, AppConstants.CAR_TYPE_MINIVAN -> {
+                text21.visible(true)
+                text21.text = context?.getString(R.string.car_description)
+            }
+            else -> {
+                text21.visible(false)
+            }
+        }
 
         imgHomeToolbar?.apply {
             visible(true)
-            setOnClickListener {  }
+            setOnClickListener { }
         }
         txtTitleToolbar?.text = getString(R.string.home)
         imgHomeToolbar?.setOnClickListener {
@@ -88,6 +110,7 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
                     )
             }
         }
+
         txtFromDriverHome?.setOnClickListener { presenter.onFromBtnClicked() }
         txtToDriverHome?.setOnClickListener { presenter.onToBtnClicked() }
         txtDateFromDriverHome?.setOnClickListener { presenter.onDateFromBtnClicked() }
@@ -105,7 +128,7 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
         btnSeveralDayDriverHome?.setOnClickListener { presenter.onSeveralBtnClicked() }
         recyclerPlaceDriverHome?.adapter = priceAdapter
         recyclerDateDriverHome?.adapter = dateFromToAdapter
-        edtFromDriverHome?.addTextChangedListener(object : TextWatcher{
+        edtFromDriverHome?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -116,7 +139,7 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
 
             @SuppressLint("SetTextI18n")
             override fun afterTextChanged(s: Editable?) {
-                if (!s.isNullOrEmpty()){
+                if (!s.isNullOrEmpty()) {
                     val count = s.toString().toInt()
                     if (count > 99)
                         edtFromDriverHome?.setText("99")
@@ -124,7 +147,7 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
             }
         })
 
-        edtToDriverHome?.addTextChangedListener(object : TextWatcher{
+        edtToDriverHome?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -135,7 +158,7 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
 
             @SuppressLint("SetTextI18n")
             override fun afterTextChanged(s: Editable?) {
-                if (!s.isNullOrEmpty()){
+                if (!s.isNullOrEmpty()) {
                     val count = s.toString().toInt()
                     if (count > 100)
                         edtToDriverHome?.setText("100")
@@ -190,10 +213,10 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
 
     }
 
-    override fun showDataPickerDialog(){
+    override fun showDataPickerDialog() {
         val calendar = Calendar.getInstance()
         context?.let {
-           val dialog = DatePickerDialog(
+            val dialog = DatePickerDialog(
                 it,
                 dateListener,
                 calendar[Calendar.YEAR],
@@ -201,14 +224,16 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
                 calendar[Calendar.DAY_OF_MONTH]
             )
             dialog.datePicker.minDate = calendar.timeInMillis
-            dialog.datePicker.maxDate = calendar.timeInMillis + (1000*60*60*24*7)
+            dialog.datePicker.maxDate = calendar.timeInMillis + (1000 * 60 * 60 * 24 * 7)
             dialog.show()
-            dialog.getButton(TimePickerDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
-            dialog.getButton(TimePickerDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
+            dialog.getButton(TimePickerDialog.BUTTON_POSITIVE)
+                ?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
+            dialog.getButton(TimePickerDialog.BUTTON_NEGATIVE)
+                ?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
         }
     }
 
-    override fun showDataPickerDialogTo(calendar: Calendar){
+    override fun showDataPickerDialogTo(calendar: Calendar) {
         val calendars = Calendar.getInstance()
         context?.let {
             val dialog = DatePickerDialog(
@@ -219,17 +244,19 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
                 calendars[Calendar.DAY_OF_MONTH]
             )
             dialog.datePicker.minDate = calendar.timeInMillis
-            dialog.datePicker.maxDate = calendars.timeInMillis + (1000*60*60*24*8)
+            dialog.datePicker.maxDate = calendars.timeInMillis + (1000 * 60 * 60 * 24 * 8)
             dialog.show()
-            dialog.getButton(TimePickerDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
-            dialog.getButton(TimePickerDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
+            dialog.getButton(TimePickerDialog.BUTTON_POSITIVE)
+                ?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
+            dialog.getButton(TimePickerDialog.BUTTON_NEGATIVE)
+                ?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
         }
     }
 
-    private fun showTimePickerDialog(){
+    private fun showTimePickerDialog() {
         val calendar = Calendar.getInstance()
         context?.let {
-            val dialog =TimePickerDialog(
+            val dialog = TimePickerDialog(
                 it,
                 timeListener,
                 calendar[Calendar.HOUR_OF_DAY],
@@ -237,13 +264,15 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
                 true
             )
             dialog.show()
-            dialog.getButton(TimePickerDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
-            dialog.getButton(TimePickerDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
+            dialog.getButton(TimePickerDialog.BUTTON_POSITIVE)
+                ?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
+            dialog.getButton(TimePickerDialog.BUTTON_NEGATIVE)
+                ?.setTextColor(ContextCompat.getColor(it, R.color.colorAccent))
         }
     }
 
     private val dateListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-        presenter.onDateSelected(year, month+1, dayOfMonth)
+        presenter.onDateSelected(year, month + 1, dayOfMonth)
         showTimePickerDialog()
     }
 
@@ -256,7 +285,7 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
         activity?.hideKeyboard()
     }
 
-    override fun openUpcomingTravelDriverFragment(upcomindId:Int) {
+    override fun openUpcomingTravelDriverFragment(upcomindId: Int) {
         activity?.replaceFragmentWithBackStack(
             R.id.container_main_driver,
             UpcomingTravelDriverFragment.newInstance(carFlag = 0, upcomingId = upcomindId),
@@ -264,8 +293,8 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
         )
     }
 
- 
-    override fun driverIsActive(isActive : Boolean) {
+
+    override fun driverIsActive(isActive: Boolean) {
         txtFromDriverHome?.isEnabled = isActive
         txtToDriverHome?.isEnabled = isActive
         txtInactiveDriverHome?.visible(!isActive)
@@ -283,8 +312,8 @@ class HomeDriverFragment : BaseFragment(), HomeDriverView {
         dateFromToAdapter.submitData(dataList)
     }
 
-    override fun isCheckBusType(is36Seat: Boolean) {
-        text21.visible(is36Seat)
-    }
+//    override fun isCheckBusType(is36Seat: Boolean) {
+//        text21.visible(is36Seat)
+//    }
 
 }

@@ -44,7 +44,8 @@ class AuthInteractor(
         identityBackBitmap: Bitmap? = null,
         carImageBitmap: Bitmap? = null,
         carSecondBitmap: Bitmap? = null,
-        carThirdBitmap: Bitmap? = null
+        carThirdBitmap: Bitmap? = null,
+        carAvatar: Bitmap? = null
     ): Single<User> =
         authRepository.confirmation(
             params,
@@ -55,7 +56,8 @@ class AuthInteractor(
             MultipartHelper.getBitmapDataFromPath("identity_image_back", identityBackBitmap),
             MultipartHelper.getBitmapDataFromPath("car_image", carImageBitmap),
             MultipartHelper.getBitmapDataFromPath("car_image1", carSecondBitmap),
-            MultipartHelper.getBitmapDataFromPath("car_image2", carThirdBitmap)
+            MultipartHelper.getBitmapDataFromPath("car_image2", carThirdBitmap),
+            MultipartHelper.getBitmapDataFromPath("car_avatar", carAvatar)
         )
             .subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
@@ -80,7 +82,8 @@ class AuthInteractor(
         identityBackBitmap: Bitmap? = null,
         carImageBitmap: Bitmap? = null,
         carSecondBitmap: Bitmap? = null,
-        carThirdBitmap: Bitmap? = null
+        carThirdBitmap: Bitmap? = null,
+        carAvatar: Bitmap? = null
     ): Completable =
         authRepository.roleDriver(
             params,
@@ -91,7 +94,8 @@ class AuthInteractor(
             MultipartHelper.getBitmapDataFromPath("identity_image_back", identityBackBitmap),
             MultipartHelper.getBitmapDataFromPath("car_image", carImageBitmap),
             MultipartHelper.getBitmapDataFromPath("car_image1", carSecondBitmap),
-            MultipartHelper.getBitmapDataFromPath("car_image2", carThirdBitmap)
+            MultipartHelper.getBitmapDataFromPath("car_image2", carThirdBitmap),
+            MultipartHelper.getBitmapDataFromPath("car_avatar", carAvatar)
         ).subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
 
@@ -126,6 +130,11 @@ class AuthInteractor(
 
     fun logout( token: String): Completable =
         authRepository.logout(token)
+            .subscribeOn(scheduler.io())
+            .observeOn(scheduler.ui())
+
+    fun confirmThePlace( orderId : Int?) : Single<String> =
+        authRepository.confirmThePlace(orderId)
             .subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
 }

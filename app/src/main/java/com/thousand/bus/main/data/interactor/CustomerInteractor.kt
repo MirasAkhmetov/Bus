@@ -59,6 +59,14 @@ class CustomerInteractor(
             .subscribeOn(schedulersProvider.io())
             .observeOn(schedulersProvider.ui())
 
+    fun getFeedbackListPagination(feedbackListQuery : FeedbackListQuery, carId: Int? ) : Single<List<Review>?> =
+        customerRepository.getFeedbackListPagination(
+            page = feedbackListQuery.page,
+            carId = carId
+        )
+            .subscribeOn(schedulersProvider.io())
+            .observeOn(schedulersProvider.ui()).map { it.feedbackList?.data }
+
     fun getTravel(travelId: Int): Single<TravelAndPlace> =
         customerRepository.getTravel(travelId)
             .subscribeOn(schedulersProvider.io())
@@ -69,10 +77,16 @@ class CustomerInteractor(
             .subscribeOn(schedulersProvider.io())
             .observeOn(schedulersProvider.ui())
 
-    fun placeReservation(travelId: Int?, places: Map<String, String>): Single<String> =
+    fun placeReservation(travelId: Int?, places: Map<String, String>): Single<Order> =
         customerRepository.placeReservation(travelId, places)
             .subscribeOn(schedulersProvider.io())
             .observeOn(schedulersProvider.ui())
+
+    fun getPushToDriver(id : Int?, orderId: Int?) : Single<PushToDriver> =
+        customerRepository.getPushToDriver(id, orderId)
+            .subscribeOn(schedulersProvider.io())
+            .observeOn(schedulersProvider.ui())
+
 
     fun getMyTickets(): Single<List<Ticket>> =
         customerRepository.getMyTickets()

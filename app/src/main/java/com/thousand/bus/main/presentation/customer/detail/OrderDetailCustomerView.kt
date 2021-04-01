@@ -9,6 +9,5 @@ interface OrderDetailCustomerView : BaseMvpView {
 
     fun showTravelInfo(travel: Travel)
 
-    fun showStationDataList(dataList: List<Station>)
 
 }

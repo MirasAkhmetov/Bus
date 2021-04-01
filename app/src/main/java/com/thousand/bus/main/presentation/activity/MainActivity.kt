@@ -160,8 +160,10 @@ class MainActivity : MvpAppCompatActivity(), MainActivityView {
         super.onNewIntent(intent)
         if (intent != null) {
             val type = intent.getStringExtra("typeNotifications")
+            val body = intent.getStringExtra("notificationBody")
             val carId = intent.getIntExtra("carIdNotification", -1)
             val carId2 = intent.getIntExtra("carIdFeedback", -1)
+            val orderId = intent.getIntExtra("orderId", -1)
             Log.d("Miras", "type data c $type")
 
             when(type){
@@ -179,6 +181,26 @@ class MainActivity : MvpAppCompatActivity(), MainActivityView {
                     val fragment: Fragment = FeedbackDialogFragment.newInstance(carId2)
                     supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
                         .addToBackStack(null).commit()
+                }
+                "push_to_driver" ->{
+                    val dialog =  AlertDialog.Builder(this)
+                        .setMessage(body)
+                        .setPositiveButton(
+                            this.getString(R.string.yes)
+                        ) { dialog, _ ->
+                            presenter.confirmThePlace(orderId)
+                            dialog.dismiss()
+                        }
+                        .setNegativeButton(
+                            this.getString(R.string.no)
+                        ){ dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .create()
+                    dialog.show()
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(this, R.color.colorAccent))
+                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(this, R.color.colorAccent))
+
                 }
 
             }

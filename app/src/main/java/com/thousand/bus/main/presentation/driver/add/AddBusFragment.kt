@@ -21,6 +21,7 @@ import com.thousand.bus.main.di.MainScope
 import com.thousand.bus.main.presentation.common.list.ListDialogFragment
 import com.thousand.bus.main.presentation.driver.carlist.CarListDriverFragment
 import kotlinx.android.synthetic.main.fragment_driver_addbus.*
+import kotlinx.android.synthetic.main.fragment_driver_confirm.*
 import kotlinx.android.synthetic.main.fragment_order_details.view.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.koin.android.ext.android.getKoin
@@ -68,9 +69,12 @@ class AddBusFragment : PhotoBaseFragment(), AddBusView {
         }
         imgTechPassDriverAddBus?.setOnClickListener { uploadImagePassport() }
         imgTechPassBackDriverAddBus?.setOnClickListener { uploadImagePassportBack() }
+        imgUdLichAddBus?.setOnClickListener { uploadImageId() }
+        imgUdLichBackAddBus?.setOnClickListener { uploadImageIdBack() }
         imgPhotoTransDriverAddBus?.setOnClickListener { uploadImageCar() }
         imgPhotoTransSecondDriverAddBus?.setOnClickListener { uploadImageCarSecond() }
         imgPhotoTransThirdDriverAddBus?.setOnClickListener { uploadImageCarThird() }
+        imgCarAvatarAddBus?.setOnClickListener { uploadCarAvatar() }
         txtCarTypeDriverAddBus?.setOnClickListener { presenter.onCarTypeBtnClicked() }
         txtComfortDriverAddBus?.setOnClickListener { presenter.onComfortBtnClicked() }
         btnConfirmDriverAddBus?.setOnClickListener {
@@ -115,15 +119,24 @@ class AddBusFragment : PhotoBaseFragment(), AddBusView {
     override fun showPassportImage(bitmap: Bitmap) {
         activity?.runOnUiThread {
             imgTechPassDriverAddBus?.setImageBitmap(bitmap)
-            imgAddPassport.visible(false)
-            imgAddPassport2.visible(true)
+
         }
     }
 
     override fun showPassportImageBack(bitmap: Bitmap) {
         activity?.runOnUiThread { imgTechPassBackDriverAddBus?.setImageBitmap(bitmap)
-            imgAddPassport2.visible(false)
-            imgAddPassport.visible(true)
+        }
+    }
+
+    override fun showIdentityImage(bitmap: Bitmap) {
+        activity?.runOnUiThread {
+            imgUdLichAddBus?.setImageBitmap(bitmap)
+        }
+    }
+
+    override fun showIdentityImageBack(bitmap: Bitmap) {
+        activity?.runOnUiThread {
+            imgUdLichBackAddBus?.setImageBitmap(bitmap)
         }
     }
 
@@ -131,6 +144,11 @@ class AddBusFragment : PhotoBaseFragment(), AddBusView {
     override fun showCarImage(bitmap: Bitmap) {
         activity?.runOnUiThread { imgPhotoTransDriverAddBus?.setImageBitmap(bitmap) }
     }
+
+    override fun showCarAvatar(bitmap: Bitmap) {
+        activity?.runOnUiThread { imgCarAvatarAddBus?.setImageBitmap(bitmap) }
+    }
+
 
     override fun showCarImageSecond(bitmap: Bitmap) {
         activity?.runOnUiThread { imgPhotoTransSecondDriverAddBus?.setImageBitmap(bitmap) }
@@ -202,6 +220,16 @@ class AddBusFragment : PhotoBaseFragment(), AddBusView {
             }.show()
     }
 
+    override fun uploadCarAvatar() {
+        AlertDialog.Builder(context)
+            .setItems(arrayOf("Сделать снимок", "Выбрать из галереи")) { _, which ->
+                when (which) {
+                    0 -> presenter.onCarAvatarClicked()
+                    1 -> presenter.onCarAvatarClickedGallery()
+                }
+            }.show()
+    }
+
 
 
     override fun uploadImagePassport() {
@@ -220,6 +248,26 @@ class AddBusFragment : PhotoBaseFragment(), AddBusView {
                 when (which) {
                     0 -> presenter.onPassportBackBtnClicked()
                     1 -> presenter.onPassportBackBtnClickedGallery()
+                }
+            }.show()
+    }
+
+    override fun uploadImageId() {
+        AlertDialog.Builder(context)
+            .setItems(arrayOf("Сделать снимок", "Выбрать из галереи")) { _, which ->
+                when (which) {
+                    0 -> presenter.onIdentityBtnClicked()
+                    1 -> presenter.onIdentityBtnClickedGallery()
+                }
+            }.show()
+    }
+
+    override fun uploadImageIdBack() {
+        AlertDialog.Builder(context)
+            .setItems(arrayOf("Сделать снимок", "Выбрать из галереи")) { _, which ->
+                when (which) {
+                    0 -> presenter.onIdentityBackBtnClicked()
+                    1 -> presenter.onIdentityBackBtnClickedGallery()
                 }
             }.show()
     }

@@ -17,6 +17,8 @@ interface HomeCustomerView : BaseMvpView {
 
     fun showDateTitle(title: String)
 
+
+
 //    fun showPlaceCount(title: String)
 //
 //    fun showComfortInfo(comfort: String)

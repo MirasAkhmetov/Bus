@@ -17,7 +17,7 @@ object Endpoints {
     const val TRAVEL_CREATE = "/api/v1/travel/add"
     const val TRAVEL_UPCOMING = "api/v1/profile/carTravels"
     const val TRAVEL_HISTORY = "/api/v1/travel/histories"
-    const val PASSENGERS = "/api/v1/travel/my-passengers"
+    const val PASSENGERS = "/api/v1/travel/my-passengers-groupped"
     const val FEEDBACK_LIST = "/api/v1/feedback/list"
     const val PLACE_EDIT = "/api/v1/travel/place/edit"
     const val STATIONS_BETWEEN_CITY = "/api/v1/travel-stations"
@@ -28,7 +28,7 @@ object Endpoints {
     const val RESERVATION = "/api/v1/travel/place/reservation"
     const val ROLE_PASSENGER = "/api/v1/profile/role/passenger"
     const val ROLE_DRIVER = "/api/v1/profile/role/driver"
-    const val MY_TICKETS = "/api/v1/my-tickets-new"
+    const val MY_TICKETS = "/api/v1/my-tickets-groupped"
     const val SMS_CONFIRM = "/api/v1/profile/phone-confirmation"
     const val PASSWORD_RESTORE_SEND_SMS = "/api/v1/profile/password-reset/send"
     const val PASSWORD_RESTORE = "/api/v1/profile/password-reset/check"
@@ -36,5 +36,7 @@ object Endpoints {
     const val DELETE_TRAVEL = "/api/v1/travel/delete"
     const val CLIENT_ORDER_HISTORY = "/api/v1/order-histories"
     const val LOGOUT = "/api/v1/profile/logout"
+    const val PUSH_TO_DRIVER = "/api/v1/call"
+    const val CONFIRM_THE_PLACE = "/api/v1/order/take/{orderId}"
 
 }

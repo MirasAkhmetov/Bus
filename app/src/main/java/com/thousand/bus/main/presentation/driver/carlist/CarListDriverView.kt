@@ -8,7 +8,7 @@ interface CarListDriverView: BaseMvpView {
 
     fun showCarListData(dataList: List<Car>)
 
-    fun openHomeDriverFragment(carId:Int)
+    fun openHomeDriverFragment(carId:Int, carTypeId: Int)
 
     fun openUpcomingDriverFragment(upcomingId : Int)
 

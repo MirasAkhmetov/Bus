@@ -14,10 +14,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.thousand.bus.R
-import com.thousand.bus.global.utils.AppConstants
 import com.thousand.bus.main.presentation.activity.MainActivity
-import com.thousand.bus.main.presentation.customer.ticket.TicketCustomerFragment
-import com.thousand.bus.main.presentation.driver.passenger.PassengerDriverFragment
 import java.util.*
 
 class PushNotificationService : FirebaseMessagingService() {
@@ -32,7 +29,14 @@ class PushNotificationService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
         try {
-            showNotification(remoteMessage.data["title"], remoteMessage.data["body"], remoteMessage.data["type"], remoteMessage.data["car_id"], remoteMessage.data["carId"] )
+            showNotification(
+                remoteMessage.data["title"],
+                remoteMessage.data["body"],
+                remoteMessage.data["type"],
+                remoteMessage.data["car_id"],
+                remoteMessage.data["carId"],
+                remoteMessage.data["orderId"]
+            )
             Log.d("hello", "type notif + ${remoteMessage.data["type"]}")
         } catch (e: Exception) {
             println("$tag error -->${e.localizedMessage}")
@@ -42,16 +46,19 @@ class PushNotificationService : FirebaseMessagingService() {
     private fun showNotification(
         title: String?,
         body: String?,
-        type : String?,
-        carId : String?,
-        carId2: String?
+        type: String?,
+        carId: String?,
+        carId2: String?,
+        orderId: String?
     ) {
         val intent = Intent(applicationContext, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         intent.putExtra("typeNotifications", type)
+        intent.putExtra("notificationBody", body)
         intent.putExtra("carIdNotification", carId?.toInt())
         intent.putExtra("carIdFeedback", carId2?.toInt())
+        intent.putExtra("orderId", orderId?.toInt())
 
         val notificationId = Random().nextInt(60000)
 

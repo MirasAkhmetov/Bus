@@ -69,6 +69,7 @@ class DriverConfirmFragment : PhotoBaseFragment(), DriverConfirmView {
         imgPhotoTransDriverConfirm?.setOnClickListener { uploadImageCar() }
         imgPhotoTransSecondDriverConfirm?.setOnClickListener { uploadImageCarSecond() }
         imgPhotoTransThirdDriverConfirm?.setOnClickListener { uploadImageCarThird() }
+        imgCarAvatarDriverConfirm?.setOnClickListener { uploadCarAvatar() }
         btnConfirmDriverConfirm?.setOnClickListener { openDriverConfirmWaitFragment() }
         txtCarTypeDriverConfirm?.setOnClickListener { presenter.onCarTypeBtnClicked() }
         txtComfortDriverConfirm?.setOnClickListener { presenter.onComfortBtnClicked() }
@@ -168,6 +169,13 @@ class DriverConfirmFragment : PhotoBaseFragment(), DriverConfirmView {
             imgPhotoTransThirdDriverConfirm?.setImageBitmap(bitmap)
         }
     }
+
+    override fun showCarAvatar(bitmap: Bitmap) {
+        activity?.runOnUiThread {
+            imgCarAvatarDriverConfirm?.setImageBitmap(bitmap)
+        }
+    }
+
     override fun openListDialogFragment(isMultiple: Boolean, dataList: ArrayList<ListItem>) {
         activity?.supportFragmentManager?.let {
             ListDialogFragment.newInstance(
@@ -261,6 +269,16 @@ class DriverConfirmFragment : PhotoBaseFragment(), DriverConfirmView {
                 when (which) {
                     0 -> presenter.onCarThirdBtnClicked()
                     1 -> presenter.onCarThirdBtnClickedGallery()
+                }
+            }.show()
+    }
+
+    override fun uploadCarAvatar() {
+        AlertDialog.Builder(context)
+            .setItems(arrayOf("Сделать снимок", "Выбрать из галереи")) { _, which ->
+                when (which) {
+                    0 -> presenter.onCarAvatarClicked()
+                    1 -> presenter.onCarAvatarClickedGallery()
                 }
             }.show()
     }

@@ -8,5 +8,5 @@ data class TravelAndPlace(
     @SerializedName("travel")
     val travel: Travel? = null,
     @SerializedName("places")
-    val places: List<Place>? = null
+    val places: List<Places>? = null
 )

@@ -50,12 +50,13 @@ class SearchResultCustomerPresenter(
     }
 
     fun onOrderItemSelected(travel: Travel) {
-        travel.id?.let { viewState?.openBookingCustomerFragment(it) }
+        travel.id?.let { travel.car?.id?.let { it1-> travel.car?.stateNumber?.let { it2 ->
+            viewState?.openBookingCustomerFragment(it,
+                it1, it2
+            )
+        } } }
     }
 
-    fun onOrderDetailItemSelected(travel: Travel) {
-        travel.id?.let { viewState?.openOrderDetailsCustomerFragment(it) }
-    }
 
     fun onOpenImageDialog(travel: Travel) {
         travel.id?.let { viewState?.openImageDialog(travel) }

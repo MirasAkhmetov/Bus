@@ -39,7 +39,7 @@ class CarListDriverPresenter (
         }
 
         car.let {
-            if (cardType == 1) viewState?.openHomeDriverFragment(carId = it.id!!)
+            if (cardType == 1) viewState?.openHomeDriverFragment(carId = it.id!!, carTypeId = it.carTypeId!!)
             else if (cardType == 3) viewState.openPassengerFragment(carId = it.id!!)
             else viewState.openUpcomingDriverFragment(upcomingId = it.id!!)
         }
